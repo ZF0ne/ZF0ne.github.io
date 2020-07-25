@@ -183,14 +183,67 @@
        
   <p>网址    <a href="http://106.75.72.168:2222/" target="_blank" rel="noopener">http://106.75.72.168:2222/</a></p>
 <p>Sorry. You have no permissions.</p>
-<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
-<p>抓包发现cookie    Cookie: role=Zjo1OiJ0aHJmZyI7”</p>
-<p>base64解码后   “ f:5:”thrfg”; 初步判断为rot13 thrfg为guest<br>将其改为base64(rot13(admin))</p>
-<!-- $filename = $_POST['filename']; $data = $_POST['data']; -->
+<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br></p> 
+      <a class="article-more-link" href="/2018/12/02/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
 
-<p>发现源代码</p>
-<p>post提交 filename=1.php&amp;data[]=<?php phpinfo();?>得到flag</p>
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
  
+   
+</article>
+
+    
+    <article
+  id="post-bugku文件上传wirteup"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/"
+    >bugku 文件上传 wirteup</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
+  <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p> 
+      <a class="article-more-link" href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -286,61 +339,6 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
 
     
     <article
-  id="post-bugku文件上传wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/"
-    >bugku 文件上传 wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
-  <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
-<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
-<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
   id="post-bugku备份文件wirteup"
   class="article article-type-post"
   itemscope
@@ -373,16 +371,11 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
        
   <p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
 <p>利用==比较漏洞</p>
-<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
-<p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
-<p>下列的字符串的MD5值都是0e开头的：</p>
-<p>QNKCDZO</p>
-<p>240610708</p>
-<p>s878926199a</p>
-<p>s155964671a</p>
-<p>s214587387a</p>
-<p>s214587387a</p>
- 
+<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p> 
+      <a class="article-more-link" href="/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -490,7 +483,7 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2017-2020
         <i class="ri-heart-fill heart_icon"></i> ziky
       </li>
     </ul>

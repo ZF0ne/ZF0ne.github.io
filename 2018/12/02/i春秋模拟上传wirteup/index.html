@@ -94,7 +94,7 @@
        
   <p>网址    <a href="http://106.75.72.168:2222/" target="_blank" rel="noopener">http://106.75.72.168:2222/</a></p>
 <p>Sorry. You have no permissions.</p>
-<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
+<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       <a id="more"></a><br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
 <p>抓包发现cookie    Cookie: role=Zjo1OiJ0aHJmZyI7”</p>
 <p>base64解码后   “ f:5:”thrfg”; 初步判断为rot13 thrfg为guest<br>将其改为base64(rot13(admin))</p>
 <!-- $filename = $_POST['filename']; $data = $_POST['data']; -->
@@ -190,9 +190,9 @@
       </a>
     
     
-      <a href="/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/" class="article-nav-link">
+      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">bugku 构造函数 wirteup</div>
+        <div class="article-nav-title">bugku 文件上传 wirteup</div>
       </a>
     
   </nav>
@@ -255,7 +255,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2017-2020
         <i class="ri-heart-fill heart_icon"></i> ziky
       </li>
     </ul>
