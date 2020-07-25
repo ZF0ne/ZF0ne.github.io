@@ -142,19 +142,6 @@ io.interactive()
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2020/07/24/test/</url>
-    <content><![CDATA[<p>11111111</p>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>test1</tag>
-        <tag>test2</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>calc2</title>
     <url>/2019/04/19/calc2/</url>
     <content><![CDATA[<p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
@@ -183,6 +170,26 @@ if(strpos($str,&quot;flag&quot;)!==false)
       </categories>
       <tags>
         <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql函数用法</title>
+    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>count()：汇总数据函数<ol start="2">
+<li>rand()：随机输出一个小于1的正数</li>
+<li>floor()：把输出的结果取整</li>
+<li>group by语句：把结果分组输出</li>
+<li>concat()：连接两条语句</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>-数据库学习</category>
+      </categories>
+      <tags>
+        <tag>-Mysql -函数用法</tag>
       </tags>
   </entry>
 </search>
