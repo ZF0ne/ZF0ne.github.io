@@ -234,8 +234,13 @@ io.interactive()
   </entry>
   <entry>
     <title>buuctf web easy calc wirteup</title>
-    <url>/2020/07/25/buuctf-web-easy-calc-wirteup/</url>
-    <content><![CDATA[]]></content>
+    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
+    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。<br>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
+<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
+<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
+]]></content>
   </entry>
   <entry>
     <title>i春秋 file_get_contents wirteup</title>
@@ -269,7 +274,7 @@ io.interactive()
   </entry>
   <entry>
     <title>i春秋 sqli wirteup</title>
-    <url>/2020/04/02/i%E6%98%A5%E7%A7%8B-sqli-wirteup/</url>
+    <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/</url>
     <content><![CDATA[<p>sql注入时，逗号被过滤后可用payload</p>
 <p>select * from table1 where id =1 and exists (select * from table2 where ord(substring(username from 1 for 1)=97);</p>
 <p>127’ UNION SELECT * FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>
