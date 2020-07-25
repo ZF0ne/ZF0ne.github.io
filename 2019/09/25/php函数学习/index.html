@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    bugku 文件上传 wirteup |  子非鱼ziky
+    php函数学习 |  子非鱼ziky
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-bugku文件上传wirteup"
+  id="post-php函数学习"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,18 +55,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  bugku 文件上传 wirteup
+  php函数学习
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
-  <time datetime="2018-11-28T02:30:26.000Z" itemprop="datePublished">2018-11-28</time>
+      <a href="/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2019-09-25T10:00:19.000Z" itemprop="datePublished">2019-09-25</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a> / <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/PHP/">PHP</a>
   </div>
   
 <div class="word_count">
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">279</span>
+            <span class="post-count">102</span>
         </span>
     </span>
 
@@ -96,9 +96,9 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
-<p>这道题是后缀名黑名单检测和类型检测<br>        1. 把请求头里面的Content-Type字母改成大写进行绕过<br>        2. .jpg后面加上.php5其他的都被过滤了好像<br> 如果是walf严格匹配，通过修改Content-type后字母的大小写可以绕过检测，使得需要上传的文件可以到达服务器端，而服务器的容错率较高，一般我们上传的文件可以解析。然后就需要确定我们如何上传文件，在分别将后缀名修改为php2, php3, php4, php5, phps, pht, phtm, phtml（php的别名），发现只有php5没有被过滤，成功上传，得到flag</p>
-<p>要修改三个地方：<br>1、扩展名filename<br>2、filename下面一行的Content-Type:image/jpeg<br>3、最最最重要的是请求头里的Content-Type字段，进行大小写绕过，也就是把multipart/form-data中任意一个字母改成大写即可<br> <img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/c2zulbcl.bmp" alt></p>
+  <p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
+<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
+<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
  
       <!-- reward -->
       
@@ -165,12 +165,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
 
     </footer>
   </div>
@@ -178,19 +178,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2018/12/02/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/" class="article-nav-link">
+      <a href="/2020/04/02/i%E6%98%A5%E7%A7%8B-sqli-wirteup/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            i春秋 模拟上传 wirteup
+            i春秋 sqli wirteup
           
         </div>
       </a>
     
     
-      <a href="/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/" class="article-nav-link">
+      <a href="/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">bugku 构造函数 wirteup</div>
+        <div class="article-nav-title">python库</div>
       </a>
     
   </nav>

