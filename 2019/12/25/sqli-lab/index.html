@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    sqli-labs |  你好，陌生人
+    sqli-labs(1-4) |  你好，陌生人
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -55,7 +55,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  sqli-labs
+  sqli-labs(1-4)
 </h1>
  
 
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">531</span>
+            <span class="post-count">644</span>
         </span>
     </span>
 
@@ -97,7 +97,16 @@
 <p> 根据提示可以知道，这是一道单引号注入的题目<br> 首先他让我们输入ID<br><img src="/2019/12/25/sqli-lab/05ab1d2d3f4f5421f749a046d8f3a56.png" alt><br>    先get一个参数进行测试</p>
 <a id="more"></a>    
 <p><img src="/2019/12/25/sqli-lab/d336f99bd2f6e61ef828e16e4b4d2b0.png" alt><br>    正常回显，根据提示进行单引号测试<br><img src="/2019/12/25/sqli-lab/b8c6f552da136996e0fb2847121c8d2.png" alt><br>    可以发现已经报错，这里先把报错语句拿出来<br>    ‘’1’’ LIMIT 0,1’ at line 1<br>    这里首尾两个’是输出用的而 ‘1’’ 中的1’便是你输入的参数值<br>    将这个语句放入正常语句中进行分析<br>    select * from A where id =’1’’ limit 0,1<br>    可以发现正是由于id值中传入了一个 ‘ ,使得正常的语句多了一个 ‘ 发生了错误。<br>    所以我们可以利用这一点，构造我们需要的语句<br>    select * from A where id =’1’ 需要的注入语句 –+’ limit 0,1<br>    这样我们就可以通过不同的注入语句获得我们需要的信息<br>    注入的通常流程：<br>        1、确定现有sql语句到底查询了多少个字段以及各字段的类型<br>        2、确定了字段个数再查询显示位<br>        3、在从当前显示位上查询出当前数据库、当前用户等我们所需要的数据<br>    实际操作一下<br>    构造字段查询语句<br>    payload：’ order by 3 –+<br>    可以看到页面正常回显<br><img src="/2019/12/25/sqli-lab/3785c8fcbaff654858efb5899d54a93.png" alt><br>    将3改为4<br><img src="/2019/12/25/sqli-lab/a30015d7c3cbff602cc0443c9ffd91e.png" alt><br>    发生报错，证明只存在三个字段<br>    接着确定可以回显的字段<br>    payload：-1’ union select 1,2,3 –+<br><img src="/2019/12/25/sqli-lab/81e3539614352a2e5bf5eece18a765f.png" alt><br>    可以看到2，3被显示在页面上，也就是说我们要将查询语句构造在2，3号位才可以获得相应的数据<br>    下面列出几个常用的查询语句：<br>        1、查询表：-1’ union select 1,group_concat(table_name),3 from information_schema.tables where table_scheme= database() –+<br>        2、查询列：-1’ union selecr 1,group_concat(column_name),3 from information_schema.conluns where table_name=”users” –+<br>        3、查询字段：-1’ union select 1,group_concat(A,B,C),3 from users –+<br>    注：仅使用于MySQL数据库&gt;=5.0.1以上版本</p>
-<pre><code>-------------------分割线------------------</code></pre> 
+<p>——————-分割线——————</p>
+<p>less-2 </p>
+<pre><code>这一关，通过提示可以知道也属于报错注入，不过是int型，不需要进行单引号闭合了
+
+其他与第一关的操作方法相同</code></pre><p>——————-分割线——————</p>
+<p>less-3</p>
+<pre><code>第三关与第一关类型完全一样，只不过闭合方式发生该变，只需要“ &apos; ”
+改为“ &apos;) ” 其他与第一关相同。</code></pre><p>less-4</p>
+<pre><code>同上，将只需要“ &apos; ”
+改为“ &quot; ” 其他与第一关相同。</code></pre> 
       <!-- reward -->
       
       <div id="reward-btn">

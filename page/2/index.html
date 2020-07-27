@@ -96,6 +96,61 @@
     
     
     <article
+  id="post-i春秋-sql绕过-wirteup"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/"
+    >i春秋 sql绕过 wirteup</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/" class="article-date">
+  <time datetime="2018-12-12T12:06:43.000Z" itemprop="datePublished">2018-12-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF%E5%AD%A6%E4%B9%A0/">CTF学习</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
+<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
+<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf%E5%AD%A6%E4%B9%A0/" rel="tag">ctf学习</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-i春秋-sqli-wirteup"
   class="article article-type-post"
   itemscope

