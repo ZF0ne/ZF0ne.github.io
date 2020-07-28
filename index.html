@@ -96,6 +96,120 @@
     
     
     <article
+  id="post-sqli-lab-Less20"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/28/sqli-lab-Less20/"
+    >sqli-lab Less20</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/28/sqli-lab-Less20/" class="article-date">
+  <time datetime="2020-07-28T05:10:18.000Z" itemprop="datePublished">2020-07-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Less -20</p>
+<pre><code>首先进行正常登陆</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/1.png" alt></p> 
+      <a class="article-more-link" href="/2020/07/28/sqli-lab-Less20/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-sqli-lab-Less-18-19"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/28/sqli-lab-Less-18-19/"
+    >sqli-lab Less(18-19)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/28/sqli-lab-Less-18-19/" class="article-date">
+  <time datetime="2020-07-28T05:02:31.000Z" itemprop="datePublished">2020-07-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Less -18<br>    这一关考察 Header Injection</p>
+<pre><code>直接bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/1.png" alt></p> 
+      <a class="article-more-link" href="/2020/07/28/sqli-lab-Less-18-19/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqli-lab/" rel="tag">sqli-lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag">sql注入</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-sqli-lab-less-17"
   class="article article-type-post"
   itemscope
@@ -539,138 +653,6 @@ file 一下 ret2lib ，返回32位
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-hitcon-lab3"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/18/hitcon-lab3/"
-    >hitcon  lab3 </a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/04/18/hitcon-lab3/" class="article-date">
-  <time datetime="2019-04-18T13:24:46.000Z" itemprop="datePublished">2019-04-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>lab3这道题是一个基本的栈溢出</p>
-<pre><code>先用ida分析ret2sc文件</code></pre><p><img src="https://i.loli.net/2019/04/18/5cb87b3a035c1.png" alt></p>
-<pre><code>程序显示先是read &quot;&amp;name&quot;，然后溢出v4的缓冲区，
-
-由此我们可以将shellcode跳转到name的地址去执行，然后得到shel，这是基本思路
-
-首先看一下&amp;name的地址，双击&amp;name可以看到</code></pre> 
-      <a class="article-more-link" href="/2019/04/18/hitcon-lab3/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Hitcon-lab1"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/04/17/Hitcon-lab1/"
-    >Hitcon lab1</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/04/17/Hitcon-lab1/" class="article-date">
-  <time datetime="2019-04-17T12:07:14.000Z" itemprop="datePublished">2019-04-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">逆向学习</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
-<pre><code>Hitcon这个是le3ding大佬推给我的
-
-
-这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
-
-
-——————————分割线——————————
-
-lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
-
-用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
-<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
-<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
-
-将if(password == magic)改为if(password ！= magic)
-
-运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hitcon/" rel="tag">Hitcon</a></li></ul>
 
     </footer>
   </div>
