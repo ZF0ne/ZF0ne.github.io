@@ -538,4 +538,249 @@ eg: 还有system(&apos;ls&apos;)的读取方法但是这里应该没有权限.</
         <tag>注入技巧</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sqli-lab less (26-27)</title>
+    <url>/2020/07/31/sqli-lab-less-26-27/</url>
+    <content><![CDATA[<p>Less-26<br>    这一关变得更加严格，不仅过滤了or和and，而且过滤了空格以及注释符</p>
+<p><img src="/2020/07/31/sqli-lab-less-26-27/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>通过观察后台源码发现过滤了这些
+
+绕过and和or的方法可以用25关提到的，这里注释有一种没有被过滤   ;%00  这个注释方法很多都没有被过滤，如果#和-- 都被过滤的话可以试试这个。
+
+空格可以用url编码替换：
+1、%09 TAB 键（水平）
+2、%0a 新建一行
+3、%0b TAB 键（垂直）
+4、%0c 新的一页
+5、%0d return 功能
+6、%a0 空格
+
+不过windows对这些转义有点问题，我把这些都试了结果都绕不过去，在apache可以，如果是apache的服务器这些空格的替换是可以的，可以用联合查询进行注入。
+
+这里由于我是windows，我采用了报错注入
+
+payload：0&apos;||updatexml(0x7e,concat(0x7e,(select( group_concat(table_name))from(infoorrmation_schema.tables)where (table_schema=database()))),1);%00</code></pre><p><img src="/2020/07/31/sqli-lab-less-26-27/2.png" alt>    </p>
+<pre><code>通过报错注入可以不需要绕过空格，可以用（）代替
+
+或者通过盲注中不需要and的方法进行注入，不过盲注比较费力一些。
+
+绕过后其他正常报错注入方法无异</code></pre><p>——————分割线———————</p>
+<p>less-26a</p>
+<pre><code>这一关与上一关的区别在于他不会将报错信息显示在页面上，这也就造成了报错注入无法使用，只能使用union联合查询
+
+
+但由于我用的windows，空格无法绕过，所以我就没做。。。
+
+不过看到其他的writeup除了无法进行报错注入，使用union联合查询与之前的步骤完全一致。
+
+还有就是使用盲注的方法，也可以进行注入</code></pre><p>——————分割线———————    </p>
+<p>less-27</p>
+<pre><code>标题是过滤了union和select,后台代码</code></pre><p><img src="/2020/07/31/sqli-lab-less-26-27/3.png" alt>    </p>
+<pre><code>。。。。。。
+
+还是过滤了空格，不过and和or没有被过滤
+
+这一关的思路与26关一致，可以使用报错注入，联合查询以及报错注入
+
+在需要union和select的地方将其双写绕过即可</code></pre><p>less-27a</p>
+<pre><code>这一关与26a相同不显示报错信息，与26a不同的是过滤的字变为了union 和 select ，双写绕过便可以
+
+这里闭合方式为&quot;,其他与26a思路一致</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less (21-22)</title>
+    <url>/2020/07/31/sqli-lab-less-21-22/</url>
+    <content><![CDATA[<p>Less -21</p>
+<pre><code>首先进行正常登陆，发现界面与20关基本相同
+
+不过在uname一处发生了变化</code></pre><p><img src="/2020/07/31/sqli-lab-less-21-22/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>我们输入的是admin 这里变成了 YWRtaW4=
+
+通过观察确定这是base64编码
+
+也就是说这一关将cookie值中的uname进行了base64加密，我们需要将提交的值进行base64加密即可
+
+用bp抓包进行测试</code></pre><p><img src="/2020/07/31/sqli-lab-less-21-22/2.png" alt></p>
+<pre><code>首先进行单引号测试，右侧出现了语句报错，发现闭合方式为&quot; &apos;) &quot;
+
+
+明白了闭合方式及加密方法，剩下的与20关操作步骤相同，进行基本union查询即可。</code></pre><p>——————分割线———————</p>
+<p>Less -22</p>
+<pre><code>与21关完全操作步骤完全相同，只需要将&quot;  &apos;) &quot; 改为&quot; &quot; &quot;即可。</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less 25</title>
+    <url>/2020/07/31/sqli-lab-less-25/</url>
+    <content><![CDATA[<p>Less -25</p>
+<pre><code>这一个题的标题是ALL YOUR &apos;OR&apos; and &apos;AND&apos; belong to us
+
+这个意思是所有的and 和 or都被过滤了，检查后台源码发现确实将这两个词过滤了    
+
+既然用不了就换一个&amp;&amp;和||也可以表示成and 和or 的意思</code></pre><a id="more"></a>
+<pre><code>或者利用双写进行绕过</code></pre><p><img src="/2020/07/31/sqli-lab-less-25/image.png" alt>    </p>
+<pre><code>可以看到页面正常回显
+
+绕过后其他便可进行正常注入了</code></pre><p>Less -25a</p>
+<pre><code>这一关变成数字型注入其他与25关思路完全一致</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less (29-31)</title>
+    <url>/2020/07/31/sqli-lab-less-29/</url>
+    <content><![CDATA[<p>less -29</p>
+<pre><code>这一关的标题就写着   Protection with WAF
+
+我试了半天不管怎么看都和第一关一模一样
+
+不过看后天源码确实有一个hacked.php,可是我怎么测试都没有被拦截</code></pre><a id="more"></a>
+<pre><code>于是在网上搜了半天，发现需要安装tomcat。。。。
+
+我又没有安装，在我准备放弃这一题的时候，我又看了一下另一个login.php
+
+只能说作者流批，这个login.php就是为没有安装tomcat的人准备的
+
+如果没装tomca可以直接访问http://127.0.0.1/sqli-labs/Less-29/login.php一样可以达到同样的效果</code></pre><p><img src="/2020/07/31/sqli-lab-less-29/image.png" alt>        </p>
+<pre><code>这里采用了双服务器，添加一个参数就可以绕过，剩下的就和之前的操作相同</code></pre><p>——————分割线———————</p>
+<p>less -30</p>
+<pre><code>这一关与29思路相同
+
+闭合方式从 &apos; 变成  &quot; 即可绕过，其他与之前操作相同</code></pre><p>less -31</p>
+<pre><code>闭合方式  &quot;) ，其他与之前思路相同</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less 23</title>
+    <url>/2020/07/31/sqli-lab-less-23/</url>
+    <content><![CDATA[<p>Less -23</p>
+<pre><code>23关从post方式又变成了get方式，又变成了熟悉的界面...
+
+传入一个参数后，回显正常</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>进行测试发现直接报错，说明此处存在注入点</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/2.png" alt></p>
+<pre><code>可以看到在传入的参数后面有一个单引号，说明这是单引号闭合
+
+进一步确定在后面添加一个注释符</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/3.png" alt></p>
+<pre><code>发现还是报错，推测是注释符被过滤，检查源码，发现确实被过滤了。</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/4.png" alt></p>
+<pre><code>这里 -- 、# 都被过滤
+
+这里还有一种新的注释方式  &quot; ;%00 &quot; ，通过测试发现确实没有被过滤</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/5.png" alt></p>
+<pre><code>解决了注释符的问题剩下的与第一关完全相同。
+
+这里还有一个注释方法，即用and或or语句进行闭合
+
+payload: &apos; and &apos;1&apos;=&apos;1
+
+不过采用这个注释方法order by 无法使用
+
+payload: &apos; order by 1000000 and &apos;1&apos;=&apos;1</code></pre><p><img src="/2020/07/31/sqli-lab-less-23/6.png" alt>    </p>
+<pre><code>这里不管数值多大都不会爆出错误，我们已知只有3个表，所以想要查询所存在字段数量只能通过union select 进行一个一个的试
+
+paylaod： -1&apos; union select 1 and &apos;1&apos; =&apos;1
+
+这里我在网上查了很多writeup，找到了这个wirteup
+
+https://www.cnblogs.com/xingyuner/p/12238440.html
+
+这里有对这一种方法的讲解，基本上可以理解为order by
+
+在执行时被忽略了，所以才会一直返回正常。
+
+所以只要用union select 确定字段数后，剩下的与通常方法完全一致</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less (32-33)</title>
+    <url>/2020/07/31/sqli-lab-less-32-33/</url>
+    <content><![CDATA[<p>Less-32</p>
+<pre><code>这一关在进行测试的时候发现hint里，将输入的 &apos; 变成了 \&apos;
+
+随后又输入了 &quot; \ 发现前面都被加了\
+
+很明显宽字节注入在 &apos; 前面加上%df</code></pre><a id="more"></a>
+<p><img src="/2020/07/31/sqli-lab-less-32-33/image.png" alt></p>
+<pre><code>成功绕过，绕过后其他与之前注入方法相同</code></pre><p>less 33</p>
+<pre><code>与32完全一致，不知道是不是我环境的问题。。。</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less (35-37)</title>
+    <url>/2020/07/31/sqli-lab-less-35-37/</url>
+    <content><![CDATA[<p>less -35</p>
+<p>35关数字型注入，没什么好说的，正常注入即可</p>
+<p>less -36</p>
+<p>get类型宽字节注入，与之前重复</p>
+<p>less -37</p>
+<p>post类型宽字节注入，与之前重复</p>
+<p>吐槽一下，为什么越到后面越简单，我变厉害了（不是</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-lab less 34</title>
+    <url>/2020/07/31/sqli-lab-less-34/</url>
+    <content><![CDATA[<p>Less-34</p>
+<pre><code>这一关由get提交变为post提交，这里还是宽字节注入，不过在登陆框输入%df&apos;后登陆还是失败了</code></pre><p><img src="/2020/07/31/sqli-lab-less-34/1.png" alt></p>
+<a id="more"></a>
+
+<pre><code>可以看到hint里，提交的%df还是原样，并没有被服务器解析。
+
+这里是因为输入的%df会被当成特殊符号，会被url编码，所以尽量使用bp抓包进行修改</code></pre><p><img src="/2020/07/31/sqli-lab-less-34/2.png" alt></p>
+<pre><code>可以看到成功绕过，绕过之后正常注入即可</code></pre>]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>sqli-lab</tag>
+        <tag>sql注入</tag>
+      </tags>
+  </entry>
 </search>
