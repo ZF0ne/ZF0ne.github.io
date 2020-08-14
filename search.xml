@@ -783,4 +783,37 @@ https://www.cnblogs.com/xingyuner/p/12238440.html
         <tag>sql注入</tag>
       </tags>
   </entry>
+  <entry>
+    <title>python challenage</title>
+    <url>/2020/08/14/python-challenage/</url>
+    <content><![CDATA[<p>今天发现一个非常古老的python编程游戏</p>
+<p>一共33关，记录下学习过程，同时检验一下学习成果<br>地址： <a href="http://www.pythonchallenge.com/" target="_blank" rel="noopener">http://www.pythonchallenge.com/</a></p>
+<p>第0关</p>
+<p><img src="/2020/08/14/python-challenage/0.png" alt></p>
+<a id="more"></a>
+
+<p>根据提示，要求更改url的地址，应该是将0改为2^38</p>
+<p>非常简单的代码<br>代码：<br>print(2**38)<br>结果：<br>274877906944</p>
+<p>第一关</p>
+<p><img src="/2020/08/14/python-challenage/1.png" alt></p>
+<p>代码：<br>a = “abcdefghijklmnopqrstuvwxyz”<br>b = “cdefghijklmnopqrstuvwxyzab”<br>c = “map”<br>trantab = c.maketrans(a,b)</p>
+<p>print(c.translate(trantab))<br>结果：<br>ocr</p>
+<p>第二关</p>
+<p><img src="/2020/08/14/python-challenage/2.png" alt></p>
+<p>提示告诉我们识别这些字符，他们也许在书里，但也许在源代码中</p>
+<p><img src="/2020/08/14/python-challenage/2-1.png" alt></p>
+<p>发现了一堆字符，很明显要在这堆字符中找到有用的字符，简单的数据清洗<br>代码：<br>import re<br>a = “”//这里将字符串复制过来即可，太长了就不放了<br>b = re.compile(r’[0-9a-zA-Z]’)<br>print(‘’.join(b.findall(a)))<br>结果<br>equality</p>
+<p>第三关</p>
+<p><img src="/2020/08/14/python-challenage/3.png" alt></p>
+<p>一个小写字母周围三个大写字母，和上一关相同，将正则匹配的规则更改即可</p>
+<p>import re<br>a = “”//这里将字符串复制过来即可，太长了就不放了<br>b = re.compile(r’[a-z][A-Z]{3}([a-z])[A-Z]{3}[a-z]’<br>print(‘’.join(b.findall(a)))<br>结果<br>linkedlist</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>
